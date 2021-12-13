@@ -1,11 +1,8 @@
-import intersection from 'lodash.intersection'
-import sortBy from 'lodash.sortby'
 import React, {useState, useEffect} from 'react'
 import {GlobalStyle, Header, NavButton, H1, QuizBox} from './styles'
 import Quiz from './components/Quiz'
 import Result from './components/Result'
 import {QUESTIONS} from './questions'
-import {COURSES} from './courses'
 import {Tag} from './types'
 
 export default function App() {
@@ -37,6 +34,8 @@ export default function App() {
   const [questionIds, setQuestionIds] = useState<string[]>([
     STARTING_QUESTION_ID
   ])
+  // const [previousQuestionIds, setPreviousQuestionIds] = useState<string[]>([])
+
   const [questionsData, setQuestionsData] = useState<Object>(
     getBlankQuestionsData()
   )
@@ -53,9 +52,21 @@ export default function App() {
     setUserSelectedTags([])
     setQuestionsData(getBlankQuestionsData())
     setAnswersData(getBlankAnswersData())
+    // setPreviousQuestionIds([])
     setCurrentQuestionId(STARTING_QUESTION_ID)
     setQuestionIds([STARTING_QUESTION_ID])
   }
+
+  // const handleBackClick = () => {
+  //   const previousQuestion = previousQuestionIds[previousQuestionIds.length - 1]
+  //   setPreviousQuestionIds((previousQuestionIds) =>
+  //     previousQuestionIds.slice(0, -1)
+  //   )
+
+  //   // TODO: need to remove tags from userSelectedTags
+
+  //   setQuestionIds((questionIds) => [previousQuestion, ...questionIds])
+  // }
 
   const addQuestionId = (questionId: string) => {
     setQuestionIds((questionIds) => [...questionIds, questionId])
@@ -66,6 +77,10 @@ export default function App() {
   }
 
   const removeCurrentQuestionId = () => {
+    // setPreviousQuestionIds((previousQuestionIds) => [
+    //   questionIds[0],
+    //   ...previousQuestionIds
+    // ])
     setQuestionIds((questionIds) => questionIds.slice(1))
   }
 
@@ -80,16 +95,6 @@ export default function App() {
       handleNextQuestion()
     }
   }
-
-  const matchCourseByTags = (tags: Tag[]) =>
-    sortBy(
-      COURSES.map((course, i) => ({
-        ...course,
-        matches: intersection(course.tags, tags)
-      })),
-      (item) => item.matches.length
-    ).reverse()
-
   return (
     <>
       <GlobalStyle />
@@ -109,10 +114,7 @@ export default function App() {
             handleNextQuestion={handleNextQuestion}
           />
         ) : (
-          <Result
-            userSelectedTags={userSelectedTags}
-            matchCourseByTags={matchCourseByTags}
-          />
+          <Result userSelectedTags={userSelectedTags} />
         )}
       </QuizBox>
     </>

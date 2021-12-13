@@ -1,2 +1,2 @@
-import styled from 'styled-components'
-import {COLORS, PillButton} from '../../styles'
+// import styled from 'styled-components'
+// import {COLORS, PillButton} from '../../styles'
