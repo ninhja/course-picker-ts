@@ -30,7 +30,6 @@ export const QUESTIONS: Question[] = [
     ],
     multiselect: false
   },
-
   {
     id: 'q2',
     text: 'That sounds like a great idea! How do you want to create websites?',
@@ -40,20 +39,34 @@ export const QUESTIONS: Question[] = [
     ],
     multiselect: false
   },
-
   {
     id: 'q3',
     text: 'What website features do you want to learn to code?',
     answers: [
       // {text: 'I\'m not sure yet', tags: ['topic:code']},
       {
-        text: 'Animations and interactions',
+        text: 'Sleek animations and interactions',
         tags: ['website-feature:animations']
       },
-      {text: 'Ecommerce', tags: ['website-feature:ecommerce']},
       {
-        text: 'CMS',
+        text: 'E-commerce & online payments',
+        tags: ['website-feature:e-commerce']
+      },
+      {
+        text: 'Content management systems (CMS)',
         tags: ['website-feature:CMS']
+      },
+      {
+        text: 'Experimental & artistic effects',
+        tags: ['website-feature:creative-coding']
+      },
+      {
+        text: 'Back-end databases',
+        tags: ['website-feature:back-end']
+      },
+      {
+        text: 'Data visualization',
+        tags: ['website-feature:data-viz']
       }
     ],
     multiselect: false

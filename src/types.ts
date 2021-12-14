@@ -8,10 +8,13 @@ type TagCreation =
 // | 'creation:software'
 type TagWebsiteFeature =
   | 'website-feature:animations'
-  | 'website-feature:ecommerce'
+  | 'website-feature:e-commerce'
   | 'website-feature:CMS'
   | 'website-feature:UX'
   | 'website-feature:UI'
   | 'website-feature:branding'
+  | 'website-feature:creative-coding'
+  | 'website-feature:back-end'
+  | 'website-feature:data-viz'
 
 export type Tag = TagTopic | TagCreation | TagWebsiteFeature
