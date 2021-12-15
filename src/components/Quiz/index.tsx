@@ -7,7 +7,13 @@ import {
   ContinueButton
 } from './styles'
 
-const Quiz = ({question, answers, handleOptionClick, handleNextQuestion}) => {
+const Quiz = ({
+  question,
+  answers,
+  answerIds,
+  handleOptionClick,
+  goToNextQuestion
+}) => {
   return (
     <>
       <QuestionBox>
@@ -20,7 +26,7 @@ const Quiz = ({question, answers, handleOptionClick, handleNextQuestion}) => {
             <AnswerButton
               key={index}
               onClick={() => handleOptionClick(answer)}
-              $selected={answer.selected}
+              $selected={answerIds.includes(answer.id)}
             >
               {answer.text}
             </AnswerButton>
@@ -29,7 +35,7 @@ const Quiz = ({question, answers, handleOptionClick, handleNextQuestion}) => {
       </AnswersBox>
 
       {question.multiselect && (
-        <ContinueButton type="submit" onClick={() => handleNextQuestion()}>
+        <ContinueButton type="submit" onClick={() => goToNextQuestion()}>
           Continue
         </ContinueButton>
       )}

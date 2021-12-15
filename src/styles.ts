@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   body {
+    background-color: ${COLORS.background};
     font-family: sans-serif;
     font-size: 18px;
     font-weight: 400;
@@ -70,7 +71,6 @@ export const Footer = styled.footer`
 `
 
 export const QuizBox = styled.section`
-  background-color: ${COLORS.background};
   width: 100%;
   height: 100%;
   padding: 0px 12px;

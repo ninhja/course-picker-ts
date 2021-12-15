@@ -14,47 +14,24 @@ type Question = {
 }
 
 export const QUESTIONS: Question[] = [
-  // {
-  //   id: 'q1',
-  //   text: 'What do you want to create?',
-  //   answers: [
-  //     {text: 'Websites', tags: ['creation:website'], nextQuestionId: 'q2'},
-  //     {text: 'Mobile apps', tags: ['creation:app'], nextQuestionId: 'q5'}
-  //     // {text: 'Art', tags: ['creation:art'], nextQuestionId: 'q2'},
-  //     // {
-  //     //   text: 'Visual designs',
-  //     //   tags: ['creation:visual-design'],
-  //     //   nextQuestionId: 'q2'
-  //     // }
-  //     // {text: 'Software', tags: ['creation:software'], nextQuestionId: 'q2'}
-  //   ],
-  //   multiselect: false
-  // },
   {
     id: 'q1',
-    text: 'What do you want to create?',
+    text: 'What do you want to do?',
     answers: [
-      {text: 'Websites', tags: ['creation:website'], nextQuestionId: 'q2'},
-      {text: 'Mobile apps', tags: ['creation:app'], nextQuestionId: 'q5'},
-      {text: 'Test', tags: ['creation:visual-design'], nextQuestionId: 'q3'}
-      // {text: 'Art', tags: ['creation:art'], nextQuestionId: 'q2'},
-      // {
-      //   text: 'Visual designs',
-      //   tags: ['creation:visual-design'],
-      //   nextQuestionId: 'q2'
-      // }
-      // {text: 'Software', tags: ['creation:software'], nextQuestionId: 'q2'}
-    ],
-    multiselect: true
-  },
-  {
-    id: 'q2',
-    text: 'That sounds like a great idea! How do you want to create websites?',
-    answers: [
-      {text: 'I want to code', tags: ['topic:code'], nextQuestionId: 'q3'},
+      {text: 'I want to code', tags: ['topic:code'], nextQuestionId: 'q2'},
       {text: 'I want to design', tags: ['topic:design'], nextQuestionId: 'q4'}
     ],
     multiselect: false
+  },
+  {
+    id: 'q2',
+    text: 'That sounds like a great idea! What do you want to code?',
+    answers: [
+      {text: 'Websites', tags: ['creation:website'], nextQuestionId: 'q3'},
+      {text: 'Mobile apps', tags: ['creation:app']}
+      // {text: 'Software', tags: ['creation:software'], nextQuestionId: 'q6'}
+    ],
+    multiselect: true
   },
   {
     id: 'q3',
@@ -90,24 +67,14 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'q4',
-    text: 'What website features do you want to learn to design?',
+    text: 'That sounds like a great idea! What do you want to design?',
     answers: [
-      // {text: 'I\'m not sure yet', tags: ['topic:code']},
       {
-        text: 'User experience',
+        text: 'User experiences',
         tags: ['website-feature:UX']
       },
-      {text: 'User interface', tags: ['website-feature:UI']},
+      {text: 'User interfaces', tags: ['website-feature:UI']},
       {text: 'Branding', tags: ['website-feature:branding']}
-    ],
-    multiselect: false
-  },
-  {
-    id: 'q5',
-    text: 'That sounds like a great idea! How do you want to create apps?',
-    answers: [
-      {text: 'I want to code', tags: ['topic:code']},
-      {text: 'I want to design', tags: ['topic:design']}
     ],
     multiselect: false
   }

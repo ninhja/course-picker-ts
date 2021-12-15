@@ -1,145 +1,52 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {GlobalStyle, Header, NavButton, H1, QuizBox} from './styles'
 import Quiz from './components/Quiz'
 import Result from './components/Result'
 import {QUESTIONS} from './questions'
-import {Tag} from './types'
 
 const STARTING_QUESTION_ID = 'q1'
 
 const formatDataObject = () =>
-  QUESTIONS.reduce((data, currentQuestion) => {
-    const {id, answers, ...restOfCurrentQuestion} = currentQuestion
-    const answerDataObject = answers
-      .map((answer, index) => ({
-        id: id + '-a' + (index + 1),
-        ...answer
-      }))
-      .reduce(
-        (answerData, currentAnswer) => ({
-          ...answerData,
-          [currentAnswer.id]: currentAnswer
-        }),
-        {}
-      )
-    const answerIds = Object.keys(answerDataObject)
+  QUESTIONS.reduce(
+    (data, currentQuestion) => {
+      const {id, answers, ...restOfCurrentQuestion} = currentQuestion
+      const answerDataObject = answers
+        .map((answer, index) => ({
+          id: id + '-a' + (index + 1),
+          ...answer,
+          selected: false
+        }))
+        .reduce(
+          (answerData, currentAnswer) => ({
+            ...answerData,
+            [currentAnswer.id]: currentAnswer
+          }),
+          {}
+        )
+      const answerIds = Object.keys(answerDataObject)
 
-    return {
-      questions: {
-        ...data.questions,
-        [id]: {
-          id: id,
-          ...restOfCurrentQuestion,
-          answerIds: answerIds
+      return {
+        questionsData: {
+          ...data.questionsData,
+          [id]: {
+            id: id,
+            ...restOfCurrentQuestion,
+            answerIds: answerIds
+          }
+        },
+        answersData: {
+          ...data.answersData,
+          ...answerDataObject
         }
-      },
-      answers: {
-        ...data.answers,
-        ...answerDataObject
       }
-    }
-  }, {})
-console.log(formatDataObject())
-
-// const getBlankAnswersData = () =>
-//   QUESTIONS.reduce(
-//     (answersData, currentQuestion) => ({
-//       ...answersData,
-//       [currentQuestion.id]: currentQuestion.answers.map((answer, index) => ({
-//         ...answer,
-//         selected: false
-//       }))
-//     }),
-//     {}
-//   )
-
-export default function App() {
-  const [currentQuestionId, setCurrentQuestionId] = useState<string>(
-    STARTING_QUESTION_ID
+    },
+    {questionsData: {}, answersData: {}}
   )
-  const [questionIds, setQuestionIds] = useState<string[]>([
-    STARTING_QUESTION_ID
-  ])
-  // const [previousQuestionIds, setPreviousQuestionIds] = useState<string[]>([])
 
-  // const [questionsData, setQuestionsData] = useState<Object>(
-  // getBlankQuestionsData()
-  // )
-  // const [answersData, setAnswersData] = useState<Object>(getBlankAnswersData())
-  const [userSelectedTags, setUserSelectedTags] = useState<Tag[]>([])
-
-  // useEffect(() => {
-  //   if (questionIds.length > 0) {
-  //     setCurrentQuestionId(questionIds[0])
-  //   }
-  // }, [questionIds])
-
-  const handleRestartClick = () => {
-    setUserSelectedTags([])
-    // setQuestionsData(getBlankQuestionsData())
-    // setAnswersData(getBlankAnswersData())
-    // setPreviousQuestionIds([])
-    setCurrentQuestionId(STARTING_QUESTION_ID)
-    setQuestionIds([STARTING_QUESTION_ID])
-  }
-
-  const addQuestionId = (questionId: string) => {
-    setQuestionIds((questionIds) => [...questionIds, questionId])
-  }
-
-  const addUserSelectedTags = (newTags) => {
-    setUserSelectedTags((userSelectedTags) => [...userSelectedTags, ...newTags])
-  }
-
-  const removeCurrentQuestionId = () => {
-    // setPreviousQuestionIds((previousQuestionIds) => [
-    //   questionIds[0],
-    //   ...previousQuestionIds
-    // ])
-    setQuestionIds((questionIds) => questionIds.slice(1))
-  }
-
-  const handleNextQuestion = () => {
-    removeCurrentQuestionId()
-  }
-
-  const addNextQuestion = (answer) => {
-    addUserSelectedTags(answer.tags)
-    addQuestionId(answer.nextQuestionId)
-  }
-
-  const goToQuestion = (questionId) => {
-    setCurrentQuestionId(questionId)
-  }
-
-  const setAnswerSelected = (answerId) => {
-    // setAnswersData(answers => ({
-    //   ...answers,
-    //   [answerId]: {
-    //     ...answers[answerId],
-    //     selected:
-    //   }
-    // }))
-  }
-
-  const handleOptionClick = (answer) => {
-    // addNextQuestion(answer)
-    // setAnswerSelected(answer.id)
-    // if (!questionsData[currentQuestionId].multiselect) {
-    //   goToQuestion(answer.nextQuestionId)
-    // }
-  }
-
-  // const goToPrevQuestion = () => {
-  //   const currentQuestionIdIndex = questionIds.indexOf(currentQuestionId)
-  //   setCurrentQuestionId(questionIds[currentQuestionIdIndex - 1])
-  // }
-
-  const goToNextQuestion = () => {}
-
-  // questions object
-  // answers object
-  /* 
+const {questionsData, answersData} = formatDataObject()
+// questions object
+// answers object
+/* 
   {
     'q1-a1': {
       id: 'q1-1,
@@ -151,13 +58,110 @@ export default function App() {
   }
   */
 
-  // STATE
-  // currentQuestionId - string
-  // questionIds - string[]
-  // answerIds - string[]
+// STATE
+// currentQuestionId - string
+// questionIds - string[]
+// answerIds - string[]
 
-  // clicks an answer on a question
-  //
+// clicks an answer on a question
+//
+
+export default function App() {
+  const [currentQuestionId, setCurrentQuestionId] = useState<string>(
+    STARTING_QUESTION_ID
+  )
+  const [answerIds, setAnswerIds] = useState<string[]>([])
+  const [questionIds, setQuestionIds] = useState<string[]>([
+    STARTING_QUESTION_ID
+  ])
+
+  const handleRestartClick = () => {
+    setCurrentQuestionId(STARTING_QUESTION_ID)
+    setQuestionIds([STARTING_QUESTION_ID])
+    setAnswerIds([])
+  }
+
+  const getCurrentQuestionIdIndex = () => questionIds.indexOf(currentQuestionId)
+
+  const addQuestionId = (questionId: string) => {
+    setQuestionIds((questionIds) => [...questionIds, questionId])
+  }
+
+  const insertNextQuestionId = (questionId: string) => {
+    setQuestionIds((questionIds) =>
+      questionIds
+        .slice(0, getCurrentQuestionIdIndex() + 1)
+        .concat(
+          [questionId],
+          questionIds.slice(getCurrentQuestionIdIndex() + 1)
+        )
+    )
+  }
+
+  const removeQuestionId = (questionId) => {
+    setQuestionIds((questionIds) => {
+      return questionIds.filter((id) => id !== questionId)
+    })
+  }
+
+  const goToQuestion = (questionId) => {
+    setCurrentQuestionId(questionId)
+  }
+
+  // const goToPrevQuestion = () => {
+  //   const prevQuestionId = questionIds[getCurrentQuestionIdIndex() - 1]
+  //   setCurrentQuestionId(prevQuestionId)
+  // }
+
+  const goToNextQuestion = () => {
+    console.log(getCurrentQuestionIdIndex())
+    const nextQuestionId = questionIds[getCurrentQuestionIdIndex() + 1]
+    console.log('next ', nextQuestionId)
+    console.log(questionIds)
+    goToQuestion(nextQuestionId)
+  }
+
+  const deselectAnswer = (answer) => {
+    setAnswerIds((answerIds) => answerIds.filter((id) => id !== answer.id))
+    removeQuestionId(answer.nextQuestionId)
+  }
+
+  const selectAnswer = (answer) => {
+    setAnswerIds((answerIds) => answerIds.concat(answer.id))
+    // addQuestionId(answer.nextQuestionId)
+    if (answer.nextQuestionId) insertNextQuestionId(answer.nextQuestionId)
+  }
+
+  const updateAnswerSelected = (answer) => {
+    const isAnswerSelected = answerIds.indexOf(answer.id) !== -1
+    if (isAnswerSelected) {
+      deselectAnswer(answer)
+    } else {
+      selectAnswer(answer)
+    }
+  }
+  console.log(questionIds)
+  const handleOptionClick = (answer) => {
+    updateAnswerSelected(answer)
+    if (!questionsData[currentQuestionId].multiselect) {
+      if (answer.nextQuestionId) {
+        goToQuestion(answer.nextQuestionId)
+      } else {
+        goToNextQuestion()
+      }
+    }
+  }
+
+  const handleBackClick = (answer) => {
+    // check what is the current question based on currentQuestionId
+    // check which answers were selected from currentQuestionId
+    // if this is a multiselect, then deselect all answers for current question
+    // and remove questionIds that were added due to the answers that we are deselecting
+    // then go back to the previous question
+    // and deselect all of the previous question's answers
+    // and remove those questionIds that were added
+    // goToPrevQuestion()
+  }
 
   return (
     <>
@@ -169,18 +173,29 @@ export default function App() {
         <NavButton onClick={handleRestartClick}>Restart</NavButton>
       </Header>
 
-      {/* <QuizBox>
+      <QuizBox>
         {currentQuestionId ? (
           <Quiz
             question={questionsData[currentQuestionId]}
-            answers={answersData[currentQuestionId]}
+            answers={questionsData[currentQuestionId].answerIds.map(
+              (answerId) => answersData[answerId]
+            )}
+            answerIds={answerIds}
             handleOptionClick={handleOptionClick}
-            handleNextQuestion={handleNextQuestion}
+            goToNextQuestion={goToNextQuestion}
           />
         ) : (
-          <Result userSelectedTags={userSelectedTags} />
+          <Result
+            userSelectedTags={answerIds.reduce(
+              (userSelectedTags, answerId) => [
+                ...userSelectedTags,
+                ...answersData[answerId].tags
+              ],
+              []
+            )}
+          />
         )}
-      </QuizBox> */}
+      </QuizBox>
     </>
   )
 }
