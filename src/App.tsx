@@ -5,29 +5,55 @@ import Result from './components/Result'
 import {QUESTIONS} from './questions'
 import {Tag} from './types'
 
-export default function App() {
-  const getBlankQuestionsData = () =>
-    QUESTIONS.reduce((questionsData, currentQuestion) => {
-      const {id, answers, ...restOfCurrentQuestion} = currentQuestion
-      return {
-        ...questionsData,
-        [id]: restOfCurrentQuestion
+const STARTING_QUESTION_ID = 'q1'
+
+const formatDataObject = () =>
+  QUESTIONS.reduce((data, currentQuestion) => {
+    const {id, answers, ...restOfCurrentQuestion} = currentQuestion
+    const answerDataObject = answers
+      .map((answer, index) => ({
+        id: id + '-a' + (index + 1),
+        ...answer
+      }))
+      .reduce(
+        (answerData, currentAnswer) => ({
+          ...answerData,
+          [currentAnswer.id]: currentAnswer
+        }),
+        {}
+      )
+    const answerIds = Object.keys(answerDataObject)
+
+    return {
+      questions: {
+        ...data.questions,
+        [id]: {
+          id: id,
+          ...restOfCurrentQuestion,
+          answerIds: answerIds
+        }
+      },
+      answers: {
+        ...data.answers,
+        ...answerDataObject
       }
-    }, {})
+    }
+  }, {})
+console.log(formatDataObject())
 
-  const getBlankAnswersData = () =>
-    QUESTIONS.reduce(
-      (answersData, currentQuestion) => ({
-        ...answersData,
-        [currentQuestion.id]: currentQuestion.answers.map((answer, index) => ({
-          ...answer,
-          selected: false
-        }))
-      }),
-      {}
-    )
+// const getBlankAnswersData = () =>
+//   QUESTIONS.reduce(
+//     (answersData, currentQuestion) => ({
+//       ...answersData,
+//       [currentQuestion.id]: currentQuestion.answers.map((answer, index) => ({
+//         ...answer,
+//         selected: false
+//       }))
+//     }),
+//     {}
+//   )
 
-  const STARTING_QUESTION_ID = 'q1'
+export default function App() {
   const [currentQuestionId, setCurrentQuestionId] = useState<string>(
     STARTING_QUESTION_ID
   )
@@ -36,37 +62,26 @@ export default function App() {
   ])
   // const [previousQuestionIds, setPreviousQuestionIds] = useState<string[]>([])
 
-  const [questionsData, setQuestionsData] = useState<Object>(
-    getBlankQuestionsData()
-  )
-  const [answersData, setAnswersData] = useState<Object>(getBlankAnswersData())
+  // const [questionsData, setQuestionsData] = useState<Object>(
+  // getBlankQuestionsData()
+  // )
+  // const [answersData, setAnswersData] = useState<Object>(getBlankAnswersData())
   const [userSelectedTags, setUserSelectedTags] = useState<Tag[]>([])
 
-  useEffect(() => {
-    if (questionIds.length > 0) {
-      setCurrentQuestionId(questionIds[0])
-    }
-  }, [questionIds])
+  // useEffect(() => {
+  //   if (questionIds.length > 0) {
+  //     setCurrentQuestionId(questionIds[0])
+  //   }
+  // }, [questionIds])
 
   const handleRestartClick = () => {
     setUserSelectedTags([])
-    setQuestionsData(getBlankQuestionsData())
-    setAnswersData(getBlankAnswersData())
+    // setQuestionsData(getBlankQuestionsData())
+    // setAnswersData(getBlankAnswersData())
     // setPreviousQuestionIds([])
     setCurrentQuestionId(STARTING_QUESTION_ID)
     setQuestionIds([STARTING_QUESTION_ID])
   }
-
-  // const handleBackClick = () => {
-  //   const previousQuestion = previousQuestionIds[previousQuestionIds.length - 1]
-  //   setPreviousQuestionIds((previousQuestionIds) =>
-  //     previousQuestionIds.slice(0, -1)
-  //   )
-
-  //   // TODO: need to remove tags from userSelectedTags
-
-  //   setQuestionIds((questionIds) => [previousQuestion, ...questionIds])
-  // }
 
   const addQuestionId = (questionId: string) => {
     setQuestionIds((questionIds) => [...questionIds, questionId])
@@ -88,13 +103,62 @@ export default function App() {
     removeCurrentQuestionId()
   }
 
+  const addNextQuestion = (answer) => {
+    addUserSelectedTags(answer.tags)
+    addQuestionId(answer.nextQuestionId)
+  }
+
+  const goToQuestion = (questionId) => {
+    setCurrentQuestionId(questionId)
+  }
+
+  const setAnswerSelected = (answerId) => {
+    // setAnswersData(answers => ({
+    //   ...answers,
+    //   [answerId]: {
+    //     ...answers[answerId],
+    //     selected:
+    //   }
+    // }))
+  }
+
   const handleOptionClick = (answer) => {
-    if (!questionsData[currentQuestionId].multiselect) {
-      addUserSelectedTags(answer.tags)
-      addQuestionId(answer.nextQuestionId)
-      handleNextQuestion()
+    // addNextQuestion(answer)
+    // setAnswerSelected(answer.id)
+    // if (!questionsData[currentQuestionId].multiselect) {
+    //   goToQuestion(answer.nextQuestionId)
+    // }
+  }
+
+  // const goToPrevQuestion = () => {
+  //   const currentQuestionIdIndex = questionIds.indexOf(currentQuestionId)
+  //   setCurrentQuestionId(questionIds[currentQuestionIdIndex - 1])
+  // }
+
+  const goToNextQuestion = () => {}
+
+  // questions object
+  // answers object
+  /* 
+  {
+    'q1-a1': {
+      id: 'q1-1,
+      ...rest of the answer
+    }
+    'q1-a2': {
+
     }
   }
+  */
+
+  // STATE
+  // currentQuestionId - string
+  // questionIds - string[]
+  // answerIds - string[]
+
+  // clicks an answer on a question
+  //
+
   return (
     <>
       <GlobalStyle />
@@ -105,7 +169,7 @@ export default function App() {
         <NavButton onClick={handleRestartClick}>Restart</NavButton>
       </Header>
 
-      <QuizBox>
+      {/* <QuizBox>
         {currentQuestionId ? (
           <Quiz
             question={questionsData[currentQuestionId]}
@@ -116,7 +180,7 @@ export default function App() {
         ) : (
           <Result userSelectedTags={userSelectedTags} />
         )}
-      </QuizBox>
+      </QuizBox> */}
     </>
   )
 }

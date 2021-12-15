@@ -14,12 +14,29 @@ type Question = {
 }
 
 export const QUESTIONS: Question[] = [
+  // {
+  //   id: 'q1',
+  //   text: 'What do you want to create?',
+  //   answers: [
+  //     {text: 'Websites', tags: ['creation:website'], nextQuestionId: 'q2'},
+  //     {text: 'Mobile apps', tags: ['creation:app'], nextQuestionId: 'q5'}
+  //     // {text: 'Art', tags: ['creation:art'], nextQuestionId: 'q2'},
+  //     // {
+  //     //   text: 'Visual designs',
+  //     //   tags: ['creation:visual-design'],
+  //     //   nextQuestionId: 'q2'
+  //     // }
+  //     // {text: 'Software', tags: ['creation:software'], nextQuestionId: 'q2'}
+  //   ],
+  //   multiselect: false
+  // },
   {
     id: 'q1',
     text: 'What do you want to create?',
     answers: [
       {text: 'Websites', tags: ['creation:website'], nextQuestionId: 'q2'},
-      {text: 'Mobile apps', tags: ['creation:app'], nextQuestionId: 'q5'}
+      {text: 'Mobile apps', tags: ['creation:app'], nextQuestionId: 'q5'},
+      {text: 'Test', tags: ['creation:visual-design'], nextQuestionId: 'q3'}
       // {text: 'Art', tags: ['creation:art'], nextQuestionId: 'q2'},
       // {
       //   text: 'Visual designs',
@@ -28,7 +45,7 @@ export const QUESTIONS: Question[] = [
       // }
       // {text: 'Software', tags: ['creation:software'], nextQuestionId: 'q2'}
     ],
-    multiselect: false
+    multiselect: true
   },
   {
     id: 'q2',

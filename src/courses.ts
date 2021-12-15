@@ -1,7 +1,6 @@
 import {Tag} from './types'
 
 type Course = {
-  // id: string
   name: string
   tags: Tag[]
   prerequisites: Prerequisite[]

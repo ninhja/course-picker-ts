@@ -20,7 +20,7 @@ const Quiz = ({question, answers, handleOptionClick, handleNextQuestion}) => {
             <AnswerButton
               key={index}
               onClick={() => handleOptionClick(answer)}
-              // $selected={answer.selected}
+              $selected={answer.selected}
             >
               {answer.text}
             </AnswerButton>

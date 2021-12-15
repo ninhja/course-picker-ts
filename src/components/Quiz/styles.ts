@@ -27,8 +27,7 @@ export const AnswersBox = styled.div`
 export const AnswerButton = styled(PillButton)`
   background: white;
   border: 2px solid white;
-  /* border: 2px solid ${({$selected}) =>
-    $selected ? COLORS.border : 'white'}; */
+  border: 2px solid ${({$selected}) => ($selected ? COLORS.border : 'white')};
 
   :hover {
     border: 2px solid ${COLORS.border};
