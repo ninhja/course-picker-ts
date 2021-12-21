@@ -15,4 +15,4 @@ type TagWebsiteFeature =
   | 'website-feature:back-end'
   | 'website-feature:data-viz'
 
-export type Tag = TagTopic | TagCreation | TagWebsiteFeature
+export type TagId = TagTopic | TagCreation | TagWebsiteFeature

@@ -21,7 +21,7 @@ export const QUESTIONS: Question[] = [
       {text: 'I want to code', tags: ['topic:code'], nextQuestionId: 'q2'},
       {text: 'I want to design', tags: ['topic:design'], nextQuestionId: 'q4'}
     ],
-    multiselect: false
+    multiselect: true
   },
   {
     id: 'q2',
@@ -76,6 +76,6 @@ export const QUESTIONS: Question[] = [
       {text: 'User interfaces', tags: ['website-feature:UI']},
       {text: 'Branding', tags: ['website-feature:branding']}
     ],
-    multiselect: false
+    multiselect: true
   }
 ]

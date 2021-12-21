@@ -58,22 +58,25 @@ const {questionsData, answersData} = formatDataObject()
   }
   */
 
-// STATE
-// currentQuestionId - string
-// questionIds - string[]
-// answerIds - string[]
-
-// clicks an answer on a question
-//
-
 export default function App() {
   const [currentQuestionId, setCurrentQuestionId] = useState<string>(
     STARTING_QUESTION_ID
   )
-  const [answerIds, setAnswerIds] = useState<string[]>([])
   const [questionIds, setQuestionIds] = useState<string[]>([
     STARTING_QUESTION_ID
   ])
+  // what if we reformat answerIds so that rather than a flat array,
+  // we have nested arrays which track that "paths" / "branching structure"
+  // of the questions?
+  // for example, rather than ['q1-a1', 'q2-a1', 'q4-a3', q6-a5']
+  // we have [['q1-a1', 'q2-a1'], ['q4-a3', 'q6-a5']]
+  // {'q4': ['q1-a1', 'q2-a1'], 'q5': ['q1-a2', 'q6-a5']}
+
+  // user chooses an answer. then the current question gets added
+  // {'q1': ['q1-a1'], 'q1': ['q1-a2']}
+  // {'q2': ['q1-a1', 'q2-a1'], 'q1': ['q1-a2']}
+  const [answerIds, setAnswerIds] = useState<string[]>([])
+  const [answerIdGroups, setAnswerIdGroups] = useState([])
 
   const handleRestartClick = () => {
     setCurrentQuestionId(STARTING_QUESTION_ID)
@@ -83,9 +86,9 @@ export default function App() {
 
   const getCurrentQuestionIdIndex = () => questionIds.indexOf(currentQuestionId)
 
-  const addQuestionId = (questionId: string) => {
-    setQuestionIds((questionIds) => [...questionIds, questionId])
-  }
+  // const addQuestionId = (questionId: string) => {
+  //   setQuestionIds((questionIds) => [...questionIds, questionId])
+  // }
 
   const insertNextQuestionId = (questionId: string) => {
     setQuestionIds((questionIds) =>
@@ -128,6 +131,7 @@ export default function App() {
 
   const selectAnswer = (answer) => {
     setAnswerIds((answerIds) => answerIds.concat(answer.id))
+
     // addQuestionId(answer.nextQuestionId)
     if (answer.nextQuestionId) insertNextQuestionId(answer.nextQuestionId)
   }
@@ -140,7 +144,6 @@ export default function App() {
       selectAnswer(answer)
     }
   }
-  console.log(questionIds)
   const handleOptionClick = (answer) => {
     updateAnswerSelected(answer)
     if (!questionsData[currentQuestionId].multiselect) {

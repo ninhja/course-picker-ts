@@ -1,20 +1,52 @@
 import React from 'react'
+
 import intersection from 'lodash.intersection'
+import intersectionBy from 'lodash.intersectionby'
+import intersectionWith from 'lodash.intersectionwith'
 import sortBy from 'lodash.sortby'
 import uniq from 'lodash.uniq'
 import unionBy from 'lodash.unionby'
+
 import {COURSES} from '../.././courses'
-import {Tag} from '../.././types'
+import {TagId} from '../.././types'
 
 const Result = ({userSelectedTags}) => {
-  const matchCoursesByTags = (tags: Tag[]) =>
-    sortBy(
+  const sortCoursesByMatches = (courses) => {
+    return sortBy(courses, (course) => course.matches.length).reverse()
+  }
+
+  const sortCoursesByWeight = (courses) => {
+    return sortBy(courses, (course) => course.weight).reverse()
+  }
+
+  // returns an array of CourseTag objects
+  const getMatchingCourseTags = (course, tags) =>
+    intersectionBy(
+      course.tags,
+      tags.map((tag) => ({
+        id: tag
+      })),
+      (tag) => tag.id
+    )
+
+  const getMatchingCourseTagIds = (course, tags) =>
+    getMatchingCourseTags(course, tags).map((courseTag) => courseTag.id)
+
+  const getWeight = (course, tags) =>
+    getMatchingCourseTags(course, tags).reduce(
+      (weight, tag) => weight + tag.weight,
+      0
+    )
+
+  const weightCoursesByTags = (tags: TagId[]) => {
+    return sortCoursesByWeight(
       COURSES.map((course, i) => ({
         ...course,
-        matches: intersection(course.tags, tags)
-      })),
-      (item) => item.matches.length
-    ).reverse()
+        matches: getMatchingCourseTagIds(course, tags),
+        weight: getWeight(course, tags)
+      }))
+    )
+  }
 
   // returns a list of courses that have the maximum number of matching tags
   const filterCourseMatches = (courses) => {
@@ -39,18 +71,29 @@ const Result = ({userSelectedTags}) => {
     return prerequisiteCourses
   }
 
-  const courseMatches = matchCoursesByTags(userSelectedTags)
-  const filteredMatches = filterCourseMatches(courseMatches)
-  const prerequisites = getPrerequisites(filteredMatches)
-  const quizResults = sortBy(
-    unionBy(prerequisites, filteredMatches, 'name'),
-    (course) => course.prerequisites?.length
-  )
+  const weightedCourses = weightCoursesByTags(userSelectedTags)
+  // console.log(courseMatches)
+  console.log(weightedCourses)
+  const recommendedCourses = filterCourseMatches(weightedCourses)
+  const prerequisiteCourses = getPrerequisites(recommendedCourses)
+  // const quizResults = sortBy(
+  //   filteredMatches,
+  //   (course) => course.prerequisites?.length
+  // )
 
   return (
     <>
       <h2>You should take these courses:</h2>
-      {quizResults.map((course) => (
+      {/* <div>{userSelectedTags.join(', ')}</div> */}
+      {recommendedCourses.map((course) => (
+        <h3 key={course.name}>
+          {course.name}, weight: {course.weight}
+          {/* <div>{course.tags.join(', ')}</div> */}
+        </h3>
+      ))}
+
+      <h2>You should take these prerequisites:</h2>
+      {prerequisiteCourses.map((course) => (
         <h3 key={course.name}>{course.name}</h3>
       ))}
     </>
