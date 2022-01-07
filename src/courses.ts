@@ -264,6 +264,10 @@ export const COURSES: Course[] = [
       {
         id: 'website-feature:creative-coding',
         weight: 10
+      },
+      {
+        id: 'website-feature:data-viz',
+        weight: 2
       }
     ],
     prerequisites: [
@@ -608,7 +612,8 @@ export const COURSES: Course[] = [
     tags: [
       {id: 'topic:code', weight: 10},
       {id: 'creation:website', weight: 10},
-      {id: 'website-feature:animations', weight: 6}
+      {id: 'website-feature:animations', weight: 6},
+      {id: 'website-feature:back-end', weight: 2}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
