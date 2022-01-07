@@ -54,7 +54,7 @@ export const COURSES: Course[] = [
       },
       {
         id: 'website-feature:animations',
-        weight: 10
+        weight: 6
       },
       {
         id: 'website-feature:creative-coding',
@@ -198,7 +198,7 @@ export const COURSES: Course[] = [
       },
       {
         id: 'website-feature:animations',
-        weight: 10
+        weight: 8
       }
     ],
     prerequisites: ['Foundation HTML, CSS + Javascript']
@@ -259,7 +259,7 @@ export const COURSES: Course[] = [
       },
       {
         id: 'website-feature:animations',
-        weight: 10
+        weight: 6
       },
       {
         id: 'website-feature:creative-coding',
@@ -295,7 +295,7 @@ export const COURSES: Course[] = [
       },
       {
         id: 'website-feature:animations',
-        weight: 10
+        weight: 6
       }
     ],
     prerequisites: [
@@ -327,7 +327,7 @@ export const COURSES: Course[] = [
       },
       {
         id: 'website-feature:animations',
-        weight: 10
+        weight: 4
       },
       {
         id: 'website-feature:creative-coding',
@@ -368,7 +368,7 @@ export const COURSES: Course[] = [
       },
       {
         id: 'website-feature:UI',
-        weight: 10
+        weight: 6
       },
       {
         id: 'website-feature:branding',
@@ -418,23 +418,27 @@ export const COURSES: Course[] = [
     //   workingTopic: [],
     //   library: [],
     //   framework: ['React.js'],
-    // 'creation:website'ame: 'Shopify Theme Development',
-    // tags: [
-    //   {
-    //     id: 'topic:code',
-    //     weight: 10
-    //   },
-
-    //   {
-    //     id: 'website-feature:e-commerce',
-    //     weight: 10
-    //   },
-
-    // ],
-    // prerequisites: [
-    //   'Foundation HTML, CSS + Javascript',
-    //   'Javascript for Designers'
-    // ]
+  },
+  {
+    name: 'Shopify Theme Development',
+    tags: [
+      {
+        id: 'topic:code',
+        weight: 10
+      },
+      {
+        id: 'creation:website',
+        weight: 10
+      },
+      {
+        id: 'website-feature:e-commerce',
+        weight: 10
+      }
+    ],
+    prerequisites: [
+      'Foundation HTML, CSS + Javascript',
+      'Javascript for Designers'
+    ]
     //   topic: ['code'],
     //   length: 'medium',
     //   difficulty: 'advanced',
@@ -490,7 +494,7 @@ export const COURSES: Course[] = [
     //   software: ['Figma']
   },
   {
-    name: 'Experimental Typography For The Web',
+    name: 'Experimental Typography for the Web',
     tags: [
       {id: 'topic:code', weight: 10},
       {id: 'creation:website', weight: 10},
@@ -517,7 +521,7 @@ export const COURSES: Course[] = [
     tags: [
       {id: 'topic:code', weight: 10},
       {id: 'creation:website', weight: 10},
-      {id: 'website-feature:CMS', weight: 10}
+      {id: 'website-feature:CMS', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -561,7 +565,7 @@ export const COURSES: Course[] = [
     tags: [
       {id: 'topic:code', weight: 10},
       {id: 'creation:website', weight: 10},
-      {id: 'website-feature:back-end', weight: 10}
+      {id: 'website-feature:back-end', weight: 4}
     ],
     prerequisites: ['Foundation HTML, CSS + Javascript']
     //   topic: ['code'],
@@ -604,7 +608,7 @@ export const COURSES: Course[] = [
     tags: [
       {id: 'topic:code', weight: 10},
       {id: 'creation:website', weight: 10},
-      {id: 'website-feature:animations', weight: 10}
+      {id: 'website-feature:animations', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -649,9 +653,9 @@ export const COURSES: Course[] = [
     tags: [
       {id: 'topic:code', weight: 10},
       {id: 'creation:website', weight: 10},
-      {id: 'website-feature:CMS', weight: 10},
-      {id: 'website-feature:back-end', weight: 10},
-      {id: 'website-feature:data-viz', weight: 10}
+      {id: 'website-feature:CMS', weight: 6},
+      {id: 'website-feature:back-end', weight: 6},
+      {id: 'website-feature:data-viz', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -674,7 +678,8 @@ export const COURSES: Course[] = [
     tags: [
       {id: 'topic:code', weight: 10},
       {id: 'creation:website', weight: 10},
-      {id: 'website-feature:creative-coding', weight: 10}
+      {id: 'website-feature:creative-coding', weight: 10},
+      {id: 'website-feature:animations', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',

@@ -21,17 +21,17 @@ export const QUESTIONS: Question[] = [
       {text: 'I want to code', tags: ['topic:code'], nextQuestionId: 'q2'},
       {text: 'I want to design', tags: ['topic:design'], nextQuestionId: 'q4'}
     ],
-    multiselect: true
+    multiselect: false
   },
   {
     id: 'q2',
-    text: 'That sounds like a great idea! What do you want to code?',
+    text: 'What do you want to code?',
     answers: [
       {text: 'Websites', tags: ['creation:website'], nextQuestionId: 'q3'},
       {text: 'Mobile apps', tags: ['creation:app']}
       // {text: 'Software', tags: ['creation:software'], nextQuestionId: 'q6'}
     ],
-    multiselect: true
+    multiselect: false
   },
   {
     id: 'q3',
@@ -67,7 +67,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'q4',
-    text: 'That sounds like a great idea! What do you want to design?',
+    text: 'What do you want to design?',
     answers: [
       {
         text: 'User experiences',

@@ -9,6 +9,23 @@ import unionBy from 'lodash.unionby'
 
 import {COURSES} from '../.././courses'
 import {TagId} from '../.././types'
+import {CourseBox, CourseTitle, CoursesBox} from './styles'
+
+const Course = ({course}) => (
+  <CourseBox>
+    <CourseTitle>{course.name}</CourseTitle>
+    <p>weight: {course.weight}</p>
+    {/* <div>{course.tags.join(', ')}</div> */}
+  </CourseBox>
+)
+
+const Courses = ({courses}) => (
+  <CoursesBox>
+    {courses.map((course) => (
+      <Course key={course.name} course={course} />
+    ))}
+  </CoursesBox>
+)
 
 const Result = ({userSelectedTags}) => {
   const sortCoursesByMatches = (courses) => {
@@ -83,19 +100,12 @@ const Result = ({userSelectedTags}) => {
 
   return (
     <>
-      <h2>You should take these courses:</h2>
       {/* <div>{userSelectedTags.join(', ')}</div> */}
-      {recommendedCourses.map((course) => (
-        <h3 key={course.name}>
-          {course.name}, weight: {course.weight}
-          {/* <div>{course.tags.join(', ')}</div> */}
-        </h3>
-      ))}
+      <h2>You should take these courses:</h2>
+      <Courses courses={recommendedCourses} />
 
       <h2>You should take these prerequisites:</h2>
-      {prerequisiteCourses.map((course) => (
-        <h3 key={course.name}>{course.name}</h3>
-      ))}
+      <Courses courses={prerequisiteCourses} />
     </>
   )
 }
