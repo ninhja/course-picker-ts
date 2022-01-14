@@ -1,11 +1,7 @@
 import React from 'react'
-import {
-  QuestionBox,
-  H2,
-  AnswersBox,
-  AnswerButton,
-  ContinueButton
-} from './styles'
+import {QuizBox, AnswersBox, AnswerButton, ContinueButton} from './styles'
+
+import {H2, P} from '../../styles'
 
 const Quiz = ({
   question,
@@ -15,10 +11,8 @@ const Quiz = ({
   goToNextQuestion
 }) => {
   return (
-    <>
-      <QuestionBox>
-        <H2>{question.text}</H2>
-      </QuestionBox>
+    <QuizBox>
+      <H2>{question.text}</H2>
 
       <AnswersBox>
         {answers.map((answer, index) => {
@@ -39,7 +33,7 @@ const Quiz = ({
           Continue
         </ContinueButton>
       )}
-    </>
+    </QuizBox>
   )
 }
 

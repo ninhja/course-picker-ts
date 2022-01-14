@@ -13,6 +13,13 @@ export const GlobalStyle = createGlobalStyle`
     -moz-box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+
+    margin: 0;
+    padding: 0;
   }
   
   body {
@@ -22,6 +29,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     margin: 0;
     padding: 0;
+    line-height: 1.4;
   }
 `
 
@@ -33,20 +41,25 @@ export const Button = styled.button`
 `
 
 export const PillButton = styled(Button)`
+  min-width: 12rem;
+  height: 4rem;
   border: 2px solid ${COLORS.border};
-  border-radius: 30px;
-  margin: 6px;
+  border-radius: 2rem;
   transition: 0.13s ease;
 `
 
 export const Header = styled.header`
+  background: lightpink;
+  border-bottom: 2px solid black;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 999;
   text-align: center;
-  padding: 12px;
+  padding: 20px;
   width: 100%;
+  height: 80px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -61,6 +74,23 @@ export const H1 = styled.h1`
   font-size: 18px;
 `
 
+export const H2 = styled.h2`
+  font-size: 28px;
+  font-weight: bold;
+`
+
+export const H3 = styled.h3`
+  font-size: 24px;
+`
+
+export const H4 = styled.h4`
+  font-size: 20px;
+`
+
+export const P = styled.p`
+  font-size: 16px;
+`
+
 export const Footer = styled.footer`
   position: fixed;
   bottom: 0;
@@ -69,18 +99,24 @@ export const Footer = styled.footer`
   z-index: 1;
   padding: 12px;
 `
-
-export const QuizBox = styled.section`
-  width: 100%;
-  height: 100%;
-  padding: 0px 12px;
+export const Main = styled.main`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
+`
+
+export const QuizBox = styled.section`
+  width: 90vw;
+  max-width: 900px;
+  height: 100%;
+  padding: 128px 36px;
+
+  @media (max-width: 680px) {
+    width: 100%;
+  }
 `

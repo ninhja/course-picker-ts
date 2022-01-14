@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {GlobalStyle, Header, NavButton, H1, QuizBox} from './styles'
+import {GlobalStyle, Header, NavButton, H1, Main, QuizBox} from './styles'
 import Quiz from './components/Quiz'
 import Result from './components/Result'
 import {QUESTIONS} from './questions'
@@ -44,19 +44,6 @@ const formatDataObject = () =>
   )
 
 const {questionsData, answersData} = formatDataObject()
-// questions object
-// answers object
-/* 
-  {
-    'q1-a1': {
-      id: 'q1-1,
-      ...rest of the answer
-    }
-    'q1-a2': {
-
-    }
-  }
-  */
 
 export default function App() {
   const [currentQuestionId, setCurrentQuestionId] = useState<string>(
@@ -175,30 +162,31 @@ export default function App() {
         <H1>Course Picker</H1>
         <NavButton onClick={handleRestartClick}>Restart</NavButton>
       </Header>
-
-      <QuizBox>
-        {currentQuestionId ? (
-          <Quiz
-            question={questionsData[currentQuestionId]}
-            answers={questionsData[currentQuestionId].answerIds.map(
-              (answerId) => answersData[answerId]
-            )}
-            answerIds={answerIds}
-            handleOptionClick={handleOptionClick}
-            goToNextQuestion={goToNextQuestion}
-          />
-        ) : (
-          <Result
-            userSelectedTags={answerIds.reduce(
-              (userSelectedTags, answerId) => [
-                ...userSelectedTags,
-                ...answersData[answerId].tags
-              ],
-              []
-            )}
-          />
-        )}
-      </QuizBox>
+      <Main>
+        <QuizBox>
+          {currentQuestionId ? (
+            <Quiz
+              question={questionsData[currentQuestionId]}
+              answers={questionsData[currentQuestionId].answerIds.map(
+                (answerId) => answersData[answerId]
+              )}
+              answerIds={answerIds}
+              handleOptionClick={handleOptionClick}
+              goToNextQuestion={goToNextQuestion}
+            />
+          ) : (
+            <Result
+              userSelectedTags={answerIds.reduce(
+                (userSelectedTags, answerId) => [
+                  ...userSelectedTags,
+                  ...answersData[answerId].tags
+                ],
+                []
+              )}
+            />
+          )}
+        </QuizBox>
+      </Main>
     </>
   )
 }

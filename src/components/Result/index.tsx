@@ -9,14 +9,14 @@ import uniq from 'lodash.uniq'
 import differenceBy from 'lodash.differenceby'
 
 import {COURSES} from '../.././courses'
-import {TagId} from '../.././types'
-import {CourseBox, CourseTitle, CoursesBox} from './styles'
+import {TagId} from '../.././tags'
+import {ResultBox, CourseBox, CoursesBox, RecommendationsBox} from './styles'
+import {H2, H3, H4, P} from '../../styles'
 
 const Course = ({course}) => (
   <CourseBox>
-    <CourseTitle>{course.name}</CourseTitle>
-    <p>weight: {course.weight}</p>
-    {/* <div>{course.tags.join(', ')}</div> */}
+    <H4>{course.name}</H4>
+    <P>weight: {course.weight}</P>
   </CourseBox>
 )
 
@@ -26,6 +26,13 @@ const Courses = ({courses}) => (
       <Course key={course.name} course={course} />
     ))}
   </CoursesBox>
+)
+
+const Recommendations = ({title, courses}) => (
+  <RecommendationsBox>
+    <H3>{title}</H3>
+    <Courses courses={courses} />
+  </RecommendationsBox>
 )
 
 const Result = ({userSelectedTags}) => {
@@ -95,7 +102,11 @@ const Result = ({userSelectedTags}) => {
   const getRecommendedCourses = (courses) => {
     const largestWeight = courses[0].weight
     const mainRecommendations = filterCoursesByWeight(courses, largestWeight)
-    const prerequisites = getPrerequisites(mainRecommendations)
+    const prerequisites = differenceBy(
+      getPrerequisites(mainRecommendations),
+      mainRecommendations,
+      'name'
+    )
     const otherRecommendations = differenceBy(
       courses,
       [...mainRecommendations, ...prerequisites],
@@ -118,17 +129,25 @@ const Result = ({userSelectedTags}) => {
   // )
 
   return (
-    <>
+    <ResultBox>
       {/* <div>{userSelectedTags.join(', ')}</div> */}
-      <h2>You should take these courses:</h2>
-      <Courses courses={mainRecommendations} />
+      <H2>Top Picks for Arianna</H2>
+      <Recommendations
+        title={'You should take these courses:'}
+        courses={mainRecommendations}
+      />
+      {prerequisites.length > 0 && (
+        <Recommendations
+          title={'But first, start with these courses:'}
+          courses={prerequisites}
+        />
+      )}
 
-      <h2>But first, you should start with these prerequisites:</h2>
-      <Courses courses={prerequisites} />
-
-      <h2>You might also be interested in these related courses:</h2>
-      <Courses courses={otherRecommendations} />
-    </>
+      <Recommendations
+        title={'You might also be interested in these courses:'}
+        courses={otherRecommendations}
+      />
+    </ResultBox>
   )
 }
 

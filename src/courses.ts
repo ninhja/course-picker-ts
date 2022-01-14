@@ -1,4 +1,4 @@
-import {TagId} from './types'
+import {TagId} from './tags'
 
 type CourseTag = {
   id: TagId
@@ -28,7 +28,8 @@ export const COURSES: Course[] = [
       {
         id: 'creation:website',
         weight: 10
-      }
+      },
+      {id: 'website-feature:basic', weight: 10}
     ],
     prerequisites: []
     // length: 'long',
@@ -199,7 +200,8 @@ export const COURSES: Course[] = [
       {
         id: 'website-feature:animations',
         weight: 8
-      }
+      },
+      {id: 'website-feature:basic', weight: 10}
     ],
     prerequisites: ['Foundation HTML, CSS + Javascript']
     // topic: ['code'],
@@ -336,7 +338,8 @@ export const COURSES: Course[] = [
       {
         id: 'website-feature:creative-coding',
         weight: 10
-      }
+      },
+      {id: 'website-feature:3D', weight: 10}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -371,11 +374,15 @@ export const COURSES: Course[] = [
         weight: 10
       },
       {
-        id: 'website-feature:UI',
+        id: 'creation:UI',
         weight: 6
       },
       {
-        id: 'website-feature:branding',
+        id: 'creation:branding',
+        weight: 10
+      },
+      {
+        id: 'creation:art',
         weight: 10
       }
     ],
@@ -461,7 +468,7 @@ export const COURSES: Course[] = [
       {id: 'creation:website', weight: 10},
       {id: 'creation:app', weight: 10},
       {id: 'topic:design', weight: 10},
-      {id: 'website-feature:UX', weight: 10}
+      {id: 'creation:UX', weight: 10}
     ],
     prerequisites: ['Visual Design + Branding']
     //   topic: ['design'],
@@ -482,7 +489,7 @@ export const COURSES: Course[] = [
       {id: 'topic:design', weight: 10},
       {id: 'creation:website', weight: 10},
       {id: 'creation:app', weight: 10},
-      {id: 'website-feature:UI', weight: 10}
+      {id: 'creation:UI', weight: 10}
     ],
     prerequisites: ['Visual Design + Branding']
     //   topic: ['design'],
@@ -613,7 +620,8 @@ export const COURSES: Course[] = [
       {id: 'topic:code', weight: 10},
       {id: 'creation:website', weight: 10},
       {id: 'website-feature:animations', weight: 6},
-      {id: 'website-feature:back-end', weight: 2}
+      {id: 'website-feature:back-end', weight: 2},
+      {id: 'website-feature:e-commerce', weight: 2}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -660,7 +668,8 @@ export const COURSES: Course[] = [
       {id: 'creation:website', weight: 10},
       {id: 'website-feature:CMS', weight: 6},
       {id: 'website-feature:back-end', weight: 6},
-      {id: 'website-feature:data-viz', weight: 6}
+      {id: 'website-feature:data-viz', weight: 6},
+      {id: 'website-feature:e-commerce', weight: 2}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -684,7 +693,8 @@ export const COURSES: Course[] = [
       {id: 'topic:code', weight: 10},
       {id: 'creation:website', weight: 10},
       {id: 'website-feature:creative-coding', weight: 10},
-      {id: 'website-feature:animations', weight: 6}
+      {id: 'website-feature:animations', weight: 6},
+      {id: 'website-feature:3D', weight: 10}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -720,7 +730,11 @@ export const COURSES: Course[] = [
   },
   {
     name: 'Instagram Filters + Spark AR',
-    tags: [{id: 'topic:design', weight: 5}],
+    tags: [
+      {id: 'topic:design', weight: 5},
+      {id: 'creation:art', weight: 8},
+      {id: 'creation:3D', weight: 10}
+    ],
     prerequisites: []
     //   topic: ['design'],
     //   length: 'short',

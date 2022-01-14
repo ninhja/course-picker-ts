@@ -1,27 +1,18 @@
 import styled from 'styled-components'
 import {COLORS, PillButton} from '../../styles'
 
-export const QuestionBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-export const H2 = styled.h2`
-  font-size: 28px;
-  font-weight: 700;
-`
-
-export const Description = styled.p`
-  font-size: 18px;
-  font-weight: 400;
+export const QuizBox = styled.div`
+  text-align: center;
 `
 
 export const AnswersBox = styled.div`
-  padding: 20px;
+  padding: 24px 0px;
 
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 `
 
 export const AnswerButton = styled(PillButton)`
@@ -31,6 +22,10 @@ export const AnswerButton = styled(PillButton)`
 
   :hover {
     border: 2px solid ${COLORS.border};
+  }
+
+  @media (max-width: 680px) {
+    width: 100%;
   }
 `
 

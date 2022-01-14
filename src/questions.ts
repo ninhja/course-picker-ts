@@ -1,8 +1,8 @@
-import {Tag} from './types'
+import {TagId} from './tags'
 
 type Answer = {
   text: string
-  tags: Tag[]
+  tags: TagId[]
   nextQuestionId?: string
 }
 
@@ -35,23 +35,27 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'q3',
-    text: 'What website features do you want to learn to code?',
+    text: 'What website features do you want to code?',
     answers: [
       // {text: 'I\'m not sure yet', tags: ['topic:code']},
       {
-        text: 'Sleek animations and interactions',
+        text: 'Just the basics',
+        tags: ['website-feature:basic']
+      },
+      {
+        text: 'Sleek animations',
         tags: ['website-feature:animations']
       },
       {
-        text: 'E-commerce & online payments',
+        text: 'Online payments',
         tags: ['website-feature:e-commerce']
       },
       {
-        text: 'Content management systems (CMS)',
+        text: 'Content management systems',
         tags: ['website-feature:CMS']
       },
       {
-        text: 'Experimental & artistic effects',
+        text: 'Artistic effects',
         tags: ['website-feature:creative-coding']
       },
       {
@@ -61,7 +65,8 @@ export const QUESTIONS: Question[] = [
       {
         text: 'Data visualization',
         tags: ['website-feature:data-viz']
-      }
+      },
+      {text: '3D effects', tags: ['website-feature:3D']}
     ],
     multiselect: false
   },
@@ -69,13 +74,15 @@ export const QUESTIONS: Question[] = [
     id: 'q4',
     text: 'What do you want to design?',
     answers: [
+      {text: 'Art & illustrations', tags: ['creation:art']},
       {
         text: 'User experiences',
-        tags: ['website-feature:UX']
+        tags: ['creation:UX']
       },
-      {text: 'User interfaces', tags: ['website-feature:UI']},
-      {text: 'Branding', tags: ['website-feature:branding']}
+      {text: 'User interfaces', tags: ['creation:UI']},
+      {text: 'Branding', tags: ['creation:branding']},
+      {text: 'Instagram filters', tags: ['creation:3D']}
     ],
-    multiselect: true
+    multiselect: false
   }
 ]
