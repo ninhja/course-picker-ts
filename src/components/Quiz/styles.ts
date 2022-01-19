@@ -6,7 +6,7 @@ export const QuizBox = styled.div`
 `
 
 export const AnswersBox = styled.div`
-  padding: 24px 0px;
+  padding: 36px 0px;
 
   display: flex;
   flex-wrap: wrap;

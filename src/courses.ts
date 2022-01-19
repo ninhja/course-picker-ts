@@ -16,6 +16,7 @@ type Prerequisite =
   | 'Javascript for Designers'
   | 'Visual Design + Branding'
   | 'Intro to Python'
+  | 'Plan, Design + Code Your First Website'
 
 export const COURSES: Course[] = [
   {
@@ -31,7 +32,7 @@ export const COURSES: Course[] = [
       },
       {id: 'website-feature:basic', weight: 10}
     ],
-    prerequisites: []
+    prerequisites: ['Plan, Design + Code Your First Website']
     // length: 'long',
     // difficulty: 'beginner',
     // codeTopic: ['front-end'],
@@ -89,7 +90,8 @@ export const COURSES: Course[] = [
       {
         id: 'creation:website',
         weight: 10
-      }
+      },
+      {id: 'website-feature:basic', weight: 10}
     ],
     prerequisites: []
     // topic: ['PM', 'code', 'design'],
@@ -384,7 +386,9 @@ export const COURSES: Course[] = [
       {
         id: 'creation:art',
         weight: 10
-      }
+      },
+      {id: 'creation:UI', weight: 2},
+      {id: 'creation:UX', weight: 2}
     ],
     prerequisites: []
     //   topic: ['design'],
@@ -468,7 +472,8 @@ export const COURSES: Course[] = [
       {id: 'creation:website', weight: 10},
       {id: 'creation:app', weight: 10},
       {id: 'topic:design', weight: 10},
-      {id: 'creation:UX', weight: 10}
+      {id: 'creation:UX', weight: 10},
+      {id: 'creation:UI', weight: 2}
     ],
     prerequisites: ['Visual Design + Branding']
     //   topic: ['design'],
@@ -489,7 +494,8 @@ export const COURSES: Course[] = [
       {id: 'topic:design', weight: 10},
       {id: 'creation:website', weight: 10},
       {id: 'creation:app', weight: 10},
-      {id: 'creation:UI', weight: 10}
+      {id: 'creation:UI', weight: 10},
+      {id: 'creation:UX', weight: 2}
     ],
     prerequisites: ['Visual Design + Branding']
     //   topic: ['design'],

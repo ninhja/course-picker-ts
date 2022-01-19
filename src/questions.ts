@@ -19,7 +19,11 @@ export const QUESTIONS: Question[] = [
     text: 'What do you want to do?',
     answers: [
       {text: 'I want to code', tags: ['topic:code'], nextQuestionId: 'q2'},
-      {text: 'I want to design', tags: ['topic:design'], nextQuestionId: 'q4'}
+      {text: 'I want to design', tags: ['topic:design'], nextQuestionId: 'q4'},
+      {
+        text: 'I want to manage teams and projects',
+        tags: ['topic:project-management']
+      }
     ],
     multiselect: false
   },

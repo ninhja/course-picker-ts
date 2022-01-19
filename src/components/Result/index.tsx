@@ -1,11 +1,8 @@
 import React from 'react'
 
-// import intersection from 'lodash.intersection'
 import intersectionBy from 'lodash.intersectionby'
-// import intersectionWith from 'lodash.intersectionwith'
 import sortBy from 'lodash.sortby'
 import uniq from 'lodash.uniq'
-// import unionBy from 'lodash.unionby'
 import differenceBy from 'lodash.differenceby'
 
 import {COURSES} from '../.././courses'
@@ -40,10 +37,6 @@ const Result = ({userSelectedTags}) => {
   //   return sortBy(courses, (course) => course.matches.length).reverse()
   // }
 
-  const sortCoursesByWeight = (courses) => {
-    return sortBy(courses, (course) => course.weight).reverse()
-  }
-
   // returns an array of CourseTag objects
   const getMatchingCourseTags = (course, tags) =>
     intersectionBy(
@@ -63,14 +56,28 @@ const Result = ({userSelectedTags}) => {
       0
     )
 
+  const sortCoursesByWeight = (courses) =>
+    sortBy(courses, (course) => course.weight).reverse()
+
+  const sortCoursesByPrerequisites = (courses) =>
+    sortBy(courses, (course) => course.prerequisites.length).reverse()
+
   const weightCoursesByTags = (tags: TagId[]) => {
-    return sortCoursesByWeight(
+    // const sortedCoursesByWeight = sortCoursesByWeight(
+    //   COURSES.map((course, i) => ({
+    //     ...course,
+    //     matches: getMatchingCourseTagIds(course, tags),
+    //     weight: getWeight(course, tags)
+    //   }))
+    // )
+    const sortedCoursesByPrereqs = sortCoursesByPrerequisites(
       COURSES.map((course, i) => ({
         ...course,
         matches: getMatchingCourseTagIds(course, tags),
         weight: getWeight(course, tags)
       }))
     )
+    return sortCoursesByWeight(sortedCoursesByPrereqs)
   }
 
   // returns a list of courses that have the maximum number of matching tags
@@ -123,24 +130,28 @@ const Result = ({userSelectedTags}) => {
     otherRecommendations,
     prerequisites
   ] = getRecommendedCourses(weightedCourses)
-  // const quizResults = sortBy(
-  //   filteredMatches,
-  //   (course) => course.prerequisites?.length
-  // )
 
   return (
     <ResultBox>
-      {/* <div>{userSelectedTags.join(', ')}</div> */}
       <H2>Top Picks for Arianna</H2>
+
       <Recommendations
         title={'You should take these courses:'}
         courses={mainRecommendations}
       />
       {prerequisites.length > 0 && (
-        <Recommendations
-          title={'But first, start with these courses:'}
-          courses={prerequisites}
-        />
+        <>
+          <Recommendations
+            title={'But first, start with these courses:'}
+            courses={prerequisites}
+          />
+          <Recommendations
+            title={
+              'Putting these together, here is your customized course pathway:'
+            }
+            courses={prerequisites.concat(mainRecommendations)}
+          />
+        </>
       )}
 
       <Recommendations

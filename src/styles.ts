@@ -1,4 +1,6 @@
 import styled, {createGlobalStyle} from 'styled-components'
+import GTAmericaWoff from './assets/fonts/GT-America-Regular.woff'
+import PxGroteskWoff from './assets/fonts/PxGrotesk-Regular.woff'
 
 export const COLORS = {
   text: 'black',
@@ -7,6 +9,20 @@ export const COLORS = {
 }
 
 export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'GT America';
+    font-style: normal;
+    font-weight: 400;
+    src: url(${GTAmericaWoff});
+  }
+
+  @font-face {
+    font-family: 'Px Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    src: url(${PxGroteskWoff});
+  }
+
   * {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -24,7 +40,7 @@ export const GlobalStyle = createGlobalStyle`
   
   body {
     background-color: ${COLORS.background};
-    font-family: sans-serif;
+    font-family: 'GT America', sans-serif;
     font-size: 18px;
     font-weight: 400;
     margin: 0;
@@ -71,19 +87,22 @@ export const NavButton = styled(Button)`
 `
 
 export const H1 = styled.h1`
+  font-family: 'Px Grotesk';
   font-size: 18px;
 `
 
 export const H2 = styled.h2`
-  font-size: 28px;
-  font-weight: bold;
+  font-family: 'Px Grotesk';
+  font-size: 36px;
 `
 
 export const H3 = styled.h3`
+  font-family: 'Px Grotesk';
   font-size: 24px;
 `
 
 export const H4 = styled.h4`
+  font-family: 'Px Grotesk';
   font-size: 20px;
 `
 
