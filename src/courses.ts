@@ -91,7 +91,8 @@ export const COURSES: Course[] = [
         id: 'creation:website',
         weight: 10
       },
-      {id: 'website-feature:basic', weight: 10}
+      {id: 'website-feature:basic', weight: 10},
+      {id: 'topic:project-management', weight: 1}
     ],
     prerequisites: []
     // topic: ['PM', 'code', 'design'],

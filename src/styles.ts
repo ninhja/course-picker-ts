@@ -4,7 +4,7 @@ import PxGroteskWoff from './assets/fonts/PxGrotesk-Regular.woff'
 
 export const COLORS = {
   text: 'black',
-  background: 'thistle',
+  background: '#ADE4F7',
   border: 'black'
 }
 
@@ -65,8 +65,8 @@ export const PillButton = styled(Button)`
 `
 
 export const Header = styled.header`
-  background: lightpink;
-  border-bottom: 2px solid black;
+  background: white;
+  border-bottom: 1px solid grey;
   position: fixed;
   top: 0;
   left: 0;
