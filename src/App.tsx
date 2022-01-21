@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {GlobalStyle, Header, NavButton, H1, Main, QuizBox} from './styles'
 import Quiz from './components/Quiz'
 import Result from './components/Result'
+import WelcomePage from './components/WelcomePage'
 import {QUESTIONS} from './questions'
 
 const STARTING_QUESTION_ID = 'q1'
@@ -46,12 +47,14 @@ const formatDataObject = () =>
 const {questionsData, answersData} = formatDataObject()
 
 export default function App() {
+  const [startedQuiz, setStartedQuiz] = useState<boolean>(false)
   const [currentQuestionId, setCurrentQuestionId] = useState<string>(
     STARTING_QUESTION_ID
   )
   const [questionIds, setQuestionIds] = useState<string[]>([
     STARTING_QUESTION_ID
   ])
+  const [answerIds, setAnswerIds] = useState<string[]>([])
   // what if we reformat answerIds so that rather than a flat array,
   // we have nested arrays which track that "paths" / "branching structure"
   // of the questions?
@@ -62,8 +65,10 @@ export default function App() {
   // user chooses an answer. then the current question gets added
   // {'q1': ['q1-a1'], 'q1': ['q1-a2']}
   // {'q2': ['q1-a1', 'q2-a1'], 'q1': ['q1-a2']}
-  const [answerIds, setAnswerIds] = useState<string[]>([])
-  const [answerIdGroups, setAnswerIdGroups] = useState([])
+
+  const startQuiz = () => {
+    setStartedQuiz(true)
+  }
 
   const handleRestartClick = () => {
     setCurrentQuestionId(STARTING_QUESTION_ID)
@@ -153,6 +158,8 @@ export default function App() {
     // goToPrevQuestion()
   }
 
+  console.log('currentQuestionId: ' + currentQuestionId)
+
   return (
     <>
       <GlobalStyle />
@@ -162,9 +169,11 @@ export default function App() {
         <H1>Course Picker</H1>
         <NavButton onClick={handleRestartClick}>Restart</NavButton>
       </Header>
-      <Main>
+      <Main $quizInProgress={!currentQuestionId || !startedQuiz}>
         <QuizBox>
-          {currentQuestionId ? (
+          {!startedQuiz ? (
+            <WelcomePage startQuiz={startQuiz} />
+          ) : currentQuestionId ? (
             <Quiz
               question={questionsData[currentQuestionId]}
               answers={questionsData[currentQuestionId].answerIds.map(

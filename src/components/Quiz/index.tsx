@@ -1,5 +1,5 @@
 import React from 'react'
-import {QuizBox, AnswersBox, AnswerButton, ContinueButton} from './styles'
+import {AnswersBox, AnswerButton, ContinueButton} from './styles'
 
 import {H2, P} from '../../styles'
 
@@ -11,7 +11,7 @@ const Quiz = ({
   goToNextQuestion
 }) => {
   return (
-    <QuizBox>
+    <>
       <H2>{question.text}</H2>
 
       <AnswersBox>
@@ -33,7 +33,7 @@ const Quiz = ({
           Continue
         </ContinueButton>
       )}
-    </QuizBox>
+    </>
   )
 }
 

@@ -27,4 +27,5 @@ export const CoursesBox = styled.div`
 
 export const RecommendationsBox = styled.div`
   margin: 40px 0px;
+  width: 100%;
 `

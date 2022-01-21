@@ -1,27 +1,24 @@
 import styled from 'styled-components'
 import {COLORS, PillButton} from '../../styles'
 
-export const QuizBox = styled.div`
-  text-align: center;
-`
-
 export const AnswersBox = styled.div`
-  padding: 36px 0px;
-
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 16px;
+  padding: 16px 0px;
 `
 
 export const AnswerButton = styled(PillButton)`
-  background: white;
+  background: ${COLORS.white};
   border: 2px solid white;
   border: 2px solid ${({$selected}) => ($selected ? COLORS.border : 'white')};
+  color: ${COLORS.black};
 
   :hover {
-    border: 2px solid ${COLORS.border};
+    background: ${COLORS.white};
+    border: 2px solid ${COLORS.black};
   }
 
   @media (max-width: 680px) {

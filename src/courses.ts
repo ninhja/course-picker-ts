@@ -381,7 +381,7 @@ export const COURSES: Course[] = [
         weight: 6
       },
       {
-        id: 'creation:branding',
+        id: 'creation:graphics',
         weight: 10
       },
       {
@@ -516,7 +516,8 @@ export const COURSES: Course[] = [
     tags: [
       {id: 'topic:code', weight: 10},
       {id: 'creation:website', weight: 10},
-      {id: 'website-feature:creative-coding', weight: 10}
+      {id: 'website-feature:creative-coding', weight: 8},
+      {id: 'website-feature:typography', weight: 10}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -628,7 +629,8 @@ export const COURSES: Course[] = [
       {id: 'creation:website', weight: 10},
       {id: 'website-feature:animations', weight: 6},
       {id: 'website-feature:back-end', weight: 2},
-      {id: 'website-feature:e-commerce', weight: 2}
+      {id: 'website-feature:e-commerce', weight: 2},
+      {id: 'website-feature:creative-coding', weight: 2}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -676,7 +678,8 @@ export const COURSES: Course[] = [
       {id: 'website-feature:CMS', weight: 6},
       {id: 'website-feature:back-end', weight: 6},
       {id: 'website-feature:data-viz', weight: 6},
-      {id: 'website-feature:e-commerce', weight: 2}
+      {id: 'website-feature:e-commerce', weight: 2},
+      {id: 'website-feature:creative-coding', weight: 2}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
