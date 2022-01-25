@@ -7,7 +7,7 @@ import PxGroteskWoff from './assets/fonts/PxGrotesk-Regular.woff'
 export const COLORS = {
   white: '#FFFFFF',
   black: '#111118',
-  lightBlue: '#ADE4F7',
+  lightBlue: '#CDF1FE',
   darkBlue: '#2727e6',
   extraDarkBlue: '#121297'
 }
@@ -49,7 +49,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     margin: 0;
     padding: 0;
-    line-height: 1.4;
+    line-height: 1.6;
   }
 `
 
@@ -108,7 +108,7 @@ export const H3 = styled.h3`
 
 export const H4 = styled.h4`
   font-family: 'Px Grotesk';
-  font-size: 20px;
+  font-size: 18px;
 `
 
 export const P = styled.p`
