@@ -60,7 +60,11 @@ export const QUESTIONS: Question[] = [
     answers: [
       {
         text: 'Just the basics',
-        tags: ['topic:basic']
+        tags: [
+          'coding-language:HTML',
+          'coding-language:CSS',
+          'coding-language:JS'
+        ]
       },
       {
         text: 'Cool visual effects',
@@ -202,7 +206,8 @@ export const QUESTIONS: Question[] = [
       {text: 'Javascript', tags: ['coding-language:JS']},
       {text: 'Python', tags: ['coding-language:python']},
       {text: 'Ruby on Rails', tags: ['coding-language:ruby-on-rails']},
-      {text: 'Swift', tags: ['coding-language:swift']}
+      {text: 'Swift', tags: ['coding-language:swift']},
+      {text: 'GLSL & WebGL', tags: ['coding-language:GLSL']}
     ],
     multiselect: false
   },

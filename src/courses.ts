@@ -30,7 +30,6 @@ export const COURSES: Course[] = [
         id: 'topic:website',
         weight: 10
       },
-      {id: 'topic:basic', weight: 10},
       {id: 'coding-language:HTML', weight: 10},
       {id: 'coding-language:CSS', weight: 10},
       {id: 'coding-language:JS', weight: 10},
@@ -66,7 +65,7 @@ export const COURSES: Course[] = [
         id: 'topic:creative-coding',
         weight: 10
       },
-      {id: 'coding-language:JS', weight: 10}
+      {id: 'coding-language:JS', weight: 4}
     ],
     prerequisites: []
     // topic: ['code'],
@@ -96,7 +95,6 @@ export const COURSES: Course[] = [
         id: 'topic:website',
         weight: 10
       },
-      {id: 'topic:basic', weight: 10},
       {id: 'coding-language:HTML', weight: 10},
       {id: 'coding-language:CSS', weight: 10},
       {id: 'topic:project-management', weight: 1},
@@ -184,7 +182,7 @@ export const COURSES: Course[] = [
       },
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10}
+      {id: 'coding-language:JS', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -217,7 +215,6 @@ export const COURSES: Course[] = [
         id: 'topic:animation',
         weight: 8
       },
-      {id: 'topic:basic', weight: 10},
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
       {id: 'coding-language:JS', weight: 10},
@@ -253,7 +250,7 @@ export const COURSES: Course[] = [
       },
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10}
+      {id: 'coding-language:JS', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -296,7 +293,7 @@ export const COURSES: Course[] = [
       },
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10}
+      {id: 'coding-language:JS', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -331,7 +328,7 @@ export const COURSES: Course[] = [
       },
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10}
+      {id: 'coding-language:JS', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -371,7 +368,7 @@ export const COURSES: Course[] = [
       {id: 'topic:3D', weight: 10},
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10}
+      {id: 'coding-language:JS', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -448,9 +445,13 @@ export const COURSES: Course[] = [
         id: 'topic:e-commerce',
         weight: 10
       },
+      {
+        id: 'topic:web3',
+        weight: 10
+      },
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10}
+      {id: 'coding-language:JS', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -484,7 +485,7 @@ export const COURSES: Course[] = [
       },
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10}
+      {id: 'coding-language:JS', weight: 4}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -555,7 +556,7 @@ export const COURSES: Course[] = [
       {id: 'topic:typography', weight: 10},
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10}
+      {id: 'coding-language:JS', weight: 6}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -711,7 +712,7 @@ export const COURSES: Course[] = [
       {id: 'topic:website', weight: 10},
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10},
+      {id: 'coding-language:JS', weight: 6},
       {id: 'topic:front-end', weight: 10}
     ],
     prerequisites: [
@@ -742,7 +743,7 @@ export const COURSES: Course[] = [
       {id: 'topic:creative-coding', weight: 2},
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10},
+      {id: 'coding-language:JS', weight: 6},
       {id: 'topic:front-end', weight: 10}
     ],
     prerequisites: [
@@ -754,12 +755,7 @@ export const COURSES: Course[] = [
     //   difficulty: 'advanced',
     //   creation: ['website'],
     //   codeTopic: ['front-end'],
-    //   designTopic: [],
     //   codingLanguage: ['CSS', 'HTML', 'Javascript'],
-    //   workingTopic: [],
-    //   library: [],
-    //   framework: [],
-    //   software: []
   },
   {
     name: 'Shaders for the Web',
@@ -771,7 +767,8 @@ export const COURSES: Course[] = [
       {id: 'topic:3D', weight: 10},
       {id: 'coding-language:HTML', weight: 4},
       {id: 'coding-language:CSS', weight: 4},
-      {id: 'coding-language:JS', weight: 10}
+      {id: 'coding-language:JS', weight: 6},
+      {id: 'coding-language:GLSL', weight: 10}
     ],
     prerequisites: [
       'Foundation HTML, CSS + Javascript',
@@ -786,8 +783,6 @@ export const COURSES: Course[] = [
     //   codingLanguage: ['CSS', 'GLSL', 'HTML', 'Javascript'],
     //   workingTopic: [],
     //   library: ['Three.js'],
-    //   framework: [],
-    //   software: []
   },
   {
     name: 'Digital Project Management',

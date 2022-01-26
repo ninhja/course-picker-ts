@@ -6,7 +6,6 @@ type TagTopic =
   | 'topic:UI'
   | 'topic:graphic-design'
   | 'topic:3D'
-  | 'topic:basic'
   | 'topic:web3'
   | 'topic:animation'
   | 'topic:e-commerce'
@@ -30,5 +29,6 @@ type TagCodingLanguage =
   | 'coding-language:ruby-on-rails'
   | 'coding-language:python'
   | 'coding-language:swift'
+  | 'coding-language:GLSL'
 
 export type TagId = TagTopic | TagCodingLanguage
