@@ -55,32 +55,18 @@ export default function App() {
     STARTING_QUESTION_ID
   ])
   const [answerIds, setAnswerIds] = useState<string[]>([])
-  // what if we reformat answerIds so that rather than a flat array,
-  // we have nested arrays which track that "paths" / "branching structure"
-  // of the questions?
-  // for example, rather than ['q1-a1', 'q2-a1', 'q4-a3', q6-a5']
-  // we have [['q1-a1', 'q2-a1'], ['q4-a3', 'q6-a5']]
-  // {'q4': ['q1-a1', 'q2-a1'], 'q5': ['q1-a2', 'q6-a5']}
-
-  // user chooses an answer. then the current question gets added
-  // {'q1': ['q1-a1'], 'q1': ['q1-a2']}
-  // {'q2': ['q1-a1', 'q2-a1'], 'q1': ['q1-a2']}
 
   const startQuiz = () => {
     setStartedQuiz(true)
   }
 
-  const handleRestartClick = () => {
+  const restartQuiz = () => {
     setCurrentQuestionId(STARTING_QUESTION_ID)
     setQuestionIds([STARTING_QUESTION_ID])
     setAnswerIds([])
   }
 
   const getCurrentQuestionIdIndex = () => questionIds.indexOf(currentQuestionId)
-
-  // const addQuestionId = (questionId: string) => {
-  //   setQuestionIds((questionIds) => [...questionIds, questionId])
-  // }
 
   const insertNextQuestionId = (questionId: string) => {
     setQuestionIds((questionIds) =>
@@ -94,25 +80,39 @@ export default function App() {
   }
 
   const removeQuestionId = (questionId) => {
-    setQuestionIds((questionIds) => {
-      return questionIds.filter((id) => id !== questionId)
-    })
+    setQuestionIds((questionIds) =>
+      questionIds.filter((id) => id !== questionId)
+    )
+  }
+
+  // for each answer with the questionId, remove it from answerIds
+  const removeAnswerIds = (questionId) => {
+    setAnswerIds((answerIds) =>
+      answerIds.filter((answerId) => !answerId.includes(questionId))
+    )
   }
 
   const goToQuestion = (questionId) => {
     setCurrentQuestionId(questionId)
   }
 
-  // const goToPrevQuestion = () => {
-  //   const prevQuestionId = questionIds[getCurrentQuestionIdIndex() - 1]
-  //   setCurrentQuestionId(prevQuestionId)
-  // }
+  const goToPrevQuestion = () => {
+    // if at the first quiz question, go to quiz homepage
+    if (currentQuestionId === STARTING_QUESTION_ID) {
+      setStartedQuiz(false)
+    } else {
+      const prevQuestionId = currentQuestionId
+        ? questionIds[getCurrentQuestionIdIndex() - 1]
+        : questionIds[questionIds.length - 1]
+
+      removeAnswerIds(prevQuestionId)
+      goToQuestion(prevQuestionId)
+      removeQuestionId(currentQuestionId)
+    }
+  }
 
   const goToNextQuestion = () => {
-    console.log(getCurrentQuestionIdIndex())
     const nextQuestionId = questionIds[getCurrentQuestionIdIndex() + 1]
-    console.log('next ', nextQuestionId)
-    console.log(questionIds)
     goToQuestion(nextQuestionId)
   }
 
@@ -123,8 +123,6 @@ export default function App() {
 
   const selectAnswer = (answer) => {
     setAnswerIds((answerIds) => answerIds.concat(answer.id))
-
-    // addQuestionId(answer.nextQuestionId)
     if (answer.nextQuestionId) insertNextQuestionId(answer.nextQuestionId)
   }
 
@@ -147,27 +145,19 @@ export default function App() {
     }
   }
 
-  const handleBackClick = (answer) => {
-    // check what is the current question based on currentQuestionId
-    // check which answers were selected from currentQuestionId
-    // if this is a multiselect, then deselect all answers for current question
-    // and remove questionIds that were added due to the answers that we are deselecting
-    // then go back to the previous question
-    // and deselect all of the previous question's answers
-    // and remove those questionIds that were added
-    // goToPrevQuestion()
-  }
-
+  console.log(' ')
   console.log('currentQuestionId: ' + currentQuestionId)
+  console.log('questionIds: ' + questionIds)
+  console.log('answerIds: ' + answerIds)
 
   return (
     <>
       <GlobalStyle />
 
       <Header>
-        <NavButton>Back</NavButton>
+        <NavButton onClick={goToPrevQuestion}>Back</NavButton>
         <H1>Course Picker</H1>
-        <NavButton onClick={handleRestartClick}>Restart</NavButton>
+        <NavButton onClick={restartQuiz}>Restart</NavButton>
       </Header>
       <Main $quizInProgress={!currentQuestionId || !startedQuiz}>
         <QuizBox>

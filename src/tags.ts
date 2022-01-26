@@ -1,21 +1,28 @@
-type TagTopic = 'topic:code' | 'topic:design' | 'topic:project-management'
-type TagCodeCreation = 'creation:website' | 'creation:app'
-type TagWebsiteFeature =
-  | 'website-feature:basic'
-  | 'website-feature:animations'
-  | 'website-feature:e-commerce'
-  | 'website-feature:CMS'
-  | 'website-feature:creative-coding'
-  | 'website-feature:back-end'
-  | 'website-feature:data-viz'
-  | 'website-feature:3D'
-  | 'website-feature:typography'
-type TagDesignCreation =
-  | 'creation:art'
-  | 'creation:UX'
-  | 'creation:UI'
-  | 'creation:graphics'
-  | 'creation:3D'
+type TagTopic =
+  | 'topic:code'
+  | 'topic:design'
+  | 'topic:project-management'
+  | 'topic:UX'
+  | 'topic:UI'
+  | 'topic:graphic-design'
+  | 'topic:3D'
+  | 'topic:basic'
+  | 'topic:web3'
+  | 'topic:animation'
+  | 'topic:e-commerce'
+  | 'topic:CMS'
+  | 'topic:creative-coding'
+  | 'topic:back-end'
+  | 'topic:data-viz'
+  | 'topic:typography'
+  | 'topic:website'
+  | 'topic:app'
+  | 'topic:art'
+  | 'topic:freelance'
+  | 'topic:job-seeking'
+  | 'topic:front-end'
+  | 'topic:back-end'
+
 type TagCodingLanguage =
   | 'coding-language:HTML'
   | 'coding-language:CSS'
@@ -24,9 +31,4 @@ type TagCodingLanguage =
   | 'coding-language:python'
   | 'coding-language:swift'
 
-export type TagId =
-  | TagTopic
-  | TagCodeCreation
-  | TagWebsiteFeature
-  | TagDesignCreation
-  | TagCodingLanguage
+export type TagId = TagTopic | TagCodingLanguage

@@ -124,7 +124,6 @@ const Result = ({userSelectedTags}) => {
   }
 
   const weightedCourses = weightCoursesByTags(userSelectedTags)
-  console.log(weightedCourses)
   const [
     mainRecommendations,
     otherRecommendations,
