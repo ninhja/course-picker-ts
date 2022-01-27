@@ -19,17 +19,17 @@ export const QUESTIONS: Question[] = [
     text: 'What do you want to do?',
     answers: [
       {
-        text: "I want to create something I'm proud of",
+        text: "Create something I'm proud of",
         tags: [],
         nextQuestionId: 'q2'
       },
       {
-        text: 'I want to learn about a specific topic',
+        text: 'Learn about a specific topic',
         tags: [],
         nextQuestionId: 'q7'
       },
       {
-        text: 'I want to explore a career pathway',
+        text: 'Explore a career pathway',
         tags: [],
         nextQuestionId: 'q13'
       }
@@ -40,8 +40,8 @@ export const QUESTIONS: Question[] = [
     id: 'q2',
     text: 'How do you want to create?',
     answers: [
-      {text: 'I want to code', tags: ['topic:code'], nextQuestionId: 'q3'},
-      {text: 'I want to design', tags: ['topic:design'], nextQuestionId: 'q6'}
+      {text: 'Code', tags: ['topic:code'], nextQuestionId: 'q3'},
+      {text: 'Design', tags: ['topic:design'], nextQuestionId: 'q6'}
     ],
     multiselect: false
   },
@@ -60,11 +60,7 @@ export const QUESTIONS: Question[] = [
     answers: [
       {
         text: 'Just the basics',
-        tags: [
-          'coding-language:HTML',
-          'coding-language:CSS',
-          'coding-language:JS'
-        ]
+        tags: ['coding-language:HTML', 'coding-language:CSS']
       },
       {
         text: 'Cool visual effects',
@@ -141,12 +137,11 @@ export const QUESTIONS: Question[] = [
       {
         text: 'Design',
         tags: ['topic:design'],
-        nextQuestionId: 'q10'
+        nextQuestionId: 'q12'
       },
       {
-        text: 'Working',
-        tags: ['topic:project-management'],
-        nextQuestionId: 'q11'
+        text: 'Project management',
+        tags: ['topic:project-management']
       }
     ],
     multiselect: false
@@ -156,32 +151,35 @@ export const QUESTIONS: Question[] = [
     text: 'Which coding topic do you want to learn about?',
     answers: [
       {
-        text: 'I want to learn a specific coding language',
+        text: 'A specific coding language',
         tags: [],
         nextQuestionId: 'q9'
+      },
+      {
+        text: 'A specific coding tool',
+        tags: [],
+        nextQuestionId: 'q10'
+      },
+      {
+        text: 'Web development',
+        tags: ['topic:web-dev'],
+        nextQuestionId: 'q11'
       },
       {
         text: 'Creative coding',
         tags: ['topic:creative-coding']
       },
-      {
-        text: 'Front-end web development',
-        tags: []
-      },
-      {
-        text: 'Back-end web development',
-        tags: ['topic:back-end']
-      },
+
       {
         text: 'Data visualization',
         tags: ['topic:data-viz']
       },
       {
-        text: 'Crypto, web 3 & blockchain development',
+        text: 'Crypto, web 3 & the blockchain',
         tags: ['topic:web3']
       },
       {
-        text: 'Shopify',
+        text: 'E-commerce',
         tags: ['topic:e-commerce']
       },
       {
@@ -189,7 +187,7 @@ export const QUESTIONS: Question[] = [
         tags: ['topic:CMS']
       },
       {
-        text: 'iOS development',
+        text: 'Mobile app development',
         tags: ['topic:app']
       }
     ],
@@ -213,6 +211,52 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'q10',
+    text: 'What coding tool do you want to learn about?',
+    answers: [
+      {
+        text: 'React.js',
+        tags: ['coding-tool:react']
+      },
+      {
+        text: 'Shopify',
+        tags: ['coding-tool:shopify']
+      },
+      {
+        text: 'The command line',
+        tags: ['coding-tool:command-line']
+      },
+      {
+        text: 'Wordpress',
+        tags: ['coding-tool:wordpress']
+      },
+      {
+        text: 'GSAP',
+        tags: ['coding-tool:GSAP']
+      }
+    ],
+    multiselect: false
+  },
+  {
+    id: 'q11',
+    text: 'What area of web development do you want to learn about?',
+    answers: [
+      {
+        text: 'Front-end web development',
+        tags: ['topic:front-end']
+      },
+      {
+        text: 'Back-end web development',
+        tags: ['topic:back-end']
+      },
+      {
+        text: 'Full-stack web development',
+        tags: []
+      }
+    ],
+    multiselect: false
+  },
+  {
+    id: 'q12',
     text: 'Which design topic do you want to learn about?',
     answers: [
       {
@@ -223,25 +267,6 @@ export const QUESTIONS: Question[] = [
       {text: 'Graphic design', tags: ['topic:graphic-design']},
       {text: 'Augmented reality', tags: ['topic:3D']},
       {text: 'Branding & marketing design', tags: []}
-    ],
-    multiselect: false
-  },
-  {
-    id: 'q11',
-    text: 'Which working topic do you want to learn about?',
-    answers: [
-      {
-        text: 'Project management',
-        tags: ['topic:project-management']
-      },
-      {
-        text: 'Job seeking',
-        tags: ['topic:job-seeking']
-      },
-      {
-        text: 'Freelancing',
-        tags: ['topic:freelance']
-      }
     ],
     multiselect: false
   },
@@ -279,12 +304,16 @@ export const QUESTIONS: Question[] = [
         tags: ['topic:back-end']
       },
       {
+        text: 'Full-stack web developer',
+        tags: ['topic:full-stack']
+      },
+      {
         text: 'Web 3 developer',
         tags: ['topic:web3']
       },
       {
         text: 'Shopify developer',
-        tags: ['topic:e-commerce']
+        tags: ['coding-tool:shopify']
       },
       {
         text: 'Wordpress developer',

@@ -17,10 +17,9 @@ type TagTopic =
   | 'topic:website'
   | 'topic:app'
   | 'topic:art'
-  | 'topic:freelance'
-  | 'topic:job-seeking'
   | 'topic:front-end'
   | 'topic:back-end'
+  | 'topic:web-dev'
 
 type TagCodingLanguage =
   | 'coding-language:HTML'
@@ -30,5 +29,14 @@ type TagCodingLanguage =
   | 'coding-language:python'
   | 'coding-language:swift'
   | 'coding-language:GLSL'
+type TagCodingTool =
+  | 'coding-tool:shopify'
+  | 'coding-tool:react'
+  | 'coding-tool:wordpress'
+  | 'coding-tool:command-line'
+  | 'coding-tool:django'
+  | 'coding-tool:GSAP'
 
-export type TagId = TagTopic | TagCodingLanguage
+type TagDesignTool = 'design-tool:figma' | 'design-tool:sparkAR'
+
+export type TagId = TagTopic | TagCodingLanguage | TagCodingTool
