@@ -145,10 +145,19 @@ export default function App() {
     }
   }
 
+  const getUserSelectedTags = () =>
+    answerIds.reduce(
+      (userSelectedTags, answerId) => [
+        ...userSelectedTags,
+        ...answersData[answerId].tags
+      ],
+      []
+    )
   console.log(' ')
   console.log('currentQuestionId: ' + currentQuestionId)
   console.log('questionIds: ' + questionIds)
   console.log('answerIds: ' + answerIds)
+  console.log('userSelectedTags: ' + getUserSelectedTags())
 
   return (
     <>
@@ -174,15 +183,7 @@ export default function App() {
               goToNextQuestion={goToNextQuestion}
             />
           ) : (
-            <Result
-              userSelectedTags={answerIds.reduce(
-                (userSelectedTags, answerId) => [
-                  ...userSelectedTags,
-                  ...answersData[answerId].tags
-                ],
-                []
-              )}
-            />
+            <Result userSelectedTags={getUserSelectedTags()} />
           )}
         </QuizBox>
       </Main>

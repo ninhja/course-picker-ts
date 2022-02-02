@@ -156,6 +156,11 @@ export const QUESTIONS: Question[] = [
         nextQuestionId: 'q9'
       },
       {
+        text: 'A Javascript library or framework',
+        tags: ['coding-language:JS'],
+        nextQuestionId: 'q16'
+      },
+      {
         text: 'A specific coding tool',
         tags: [],
         nextQuestionId: 'q10'
@@ -181,10 +186,6 @@ export const QUESTIONS: Question[] = [
       {
         text: 'E-commerce',
         tags: ['topic:e-commerce']
-      },
-      {
-        text: 'Content management systems (CMS)',
-        tags: ['topic:CMS']
       },
       {
         text: 'Mobile app development',
@@ -214,10 +215,6 @@ export const QUESTIONS: Question[] = [
     text: 'What coding tool do you want to learn about?',
     answers: [
       {
-        text: 'React.js',
-        tags: ['coding-tool:react']
-      },
-      {
         text: 'Shopify',
         tags: ['coding-tool:shopify']
       },
@@ -230,8 +227,12 @@ export const QUESTIONS: Question[] = [
         tags: ['coding-tool:wordpress']
       },
       {
-        text: 'GSAP',
-        tags: ['coding-tool:GSAP']
+        text: 'Webpack',
+        tags: ['coding-tool:webpack']
+      },
+      {
+        text: 'Django',
+        tags: ['coding-tool:django']
       }
     ],
     multiselect: false
@@ -259,6 +260,7 @@ export const QUESTIONS: Question[] = [
     id: 'q12',
     text: 'Which design topic do you want to learn about?',
     answers: [
+      {text: 'A specific design tool', tags: [], nextQuestionId: 'q17'},
       {
         text: 'User experience design',
         tags: ['topic:UX']
@@ -305,7 +307,7 @@ export const QUESTIONS: Question[] = [
       },
       {
         text: 'Full-stack web developer',
-        tags: ['topic:full-stack']
+        tags: ['topic:web-dev']
       },
       {
         text: 'Web 3 developer',
@@ -337,6 +339,53 @@ export const QUESTIONS: Question[] = [
       {
         text: 'User researcher',
         tags: ['topic:UX', 'topic:project-management']
+      }
+    ],
+    multiselect: false
+  },
+  {
+    id: 'q16',
+    text: 'Which Javascript framework or library do you want to learn about?',
+    answers: [
+      {
+        text: 'React.js',
+        tags: ['coding-tool:react']
+      },
+      {
+        text: 'GSAP',
+        tags: ['coding-tool:GSAP']
+      },
+      {
+        text: 'Three.js',
+        tags: ['coding-tool:three.js']
+      },
+      {
+        text: 'Barba.js',
+        tags: ['coding-tool:barba.js']
+      },
+      {
+        text: 'web3.js',
+        tags: ['coding-tool:web3.js']
+      },
+
+      {
+        text: 'p5.js',
+        tags: ['coding-tool:p5.js']
+      }
+    ],
+    multiselect: false
+  },
+  {
+    id: 'q17',
+    text: 'Which design tool do you want to learn about?',
+    answers: [
+      {
+        text: 'Figma',
+        tags: ['design-tool:figma']
+      },
+      {
+        text: 'Spark AR',
+        tags: ['design-tool:sparkAR']
       }
     ],
     multiselect: false
