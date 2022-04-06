@@ -1,13 +1,13 @@
 import React from 'react'
-import {AnswersBox, AnswerButton, ContinueButton} from './styles'
+import {AnswersBox, AnswerButton} from './styles'
 
-import {H2, P} from '../../styles'
+import {H2, CTAButton} from '../../styles'
 
 const Quiz = ({
   question,
   answers,
   answerIds,
-  handleOptionClick,
+  handleAnswerClick,
   goToNextQuestion
 }) => {
   return (
@@ -19,7 +19,7 @@ const Quiz = ({
           return (
             <AnswerButton
               key={index}
-              onClick={() => handleOptionClick(answer)}
+              onClick={() => handleAnswerClick(answer)}
               $selected={answerIds.includes(answer.id)}
             >
               {answer.text}
@@ -29,9 +29,9 @@ const Quiz = ({
       </AnswersBox>
 
       {question.multiselect && (
-        <ContinueButton type="submit" onClick={() => goToNextQuestion()}>
+        <CTAButton type="submit" onClick={() => goToNextQuestion()}>
           Continue
-        </ContinueButton>
+        </CTAButton>
       )}
     </>
   )

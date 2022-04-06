@@ -5,40 +5,49 @@ import sortBy from 'lodash.sortby'
 import uniq from 'lodash.uniq'
 import differenceBy from 'lodash.differenceby'
 
-import {COURSES} from '../.././courses'
-import {TagId} from '../.././tags'
+import {COURSES, Course, CourseTag} from '../.././courses'
 import {ResultBox, CourseBox, CoursesBox, RecommendationsBox} from './styles'
 import {H2, H3, H4, P} from '../../styles'
 
-const Course = ({course}) => (
+type WeightedCourse = Course & {
+  weight: number
+}
+
+const CourseComponent = ({course}: {course: WeightedCourse}) => (
   <CourseBox>
     <H4>{course.name}</H4>
     <P>weight: {course.weight}</P>
   </CourseBox>
 )
 
-const Courses = ({courses}) => (
+const CoursesComponent = ({courses}: {courses: WeightedCourse[]}) => (
   <CoursesBox>
     {courses.map((course) => (
-      <Course key={course.name} course={course} />
+      <CourseComponent key={course.name} course={course} />
     ))}
   </CoursesBox>
 )
 
-const Recommendations = ({title, courses}) => (
+const Recommendations = ({
+  title,
+  courses
+}: {
+  title: string
+  courses: WeightedCourse[]
+}) => (
   <RecommendationsBox>
     <H3>{title}</H3>
-    <Courses courses={courses} />
+    <CoursesComponent courses={courses} />
   </RecommendationsBox>
 )
 
-const Result = ({userSelectedTags}) => {
+const Result = ({userSelectedTags}: {userSelectedTags: string[]}) => {
   // const sortCoursesByMatches = (courses) => {
   //   return sortBy(courses, (course) => course.matches.length).reverse()
   // }
 
   // returns an array of CourseTag objects
-  const getMatchingCourseTags = (course, tags) =>
+  const getMatchingCourseTags = (course: Course, tags: string[]): CourseTag[] =>
     intersectionBy(
       course.tags,
       tags.map((tag) => ({
@@ -47,10 +56,10 @@ const Result = ({userSelectedTags}) => {
       (tag) => tag.id
     )
 
-  const getMatchingCourseTagIds = (course, tags) =>
-    getMatchingCourseTags(course, tags).map((courseTag) => courseTag.id)
+  // const getMatchingCourseTagIds = (course, tags) =>
+  //   getMatchingCourseTags(course, tags).map((courseTag) => courseTag.id)
 
-  const getWeight = (course, tags) =>
+  const getWeight = (course: Course, tags: string[]): number =>
     getMatchingCourseTags(course, tags).reduce(
       (weight, tag) => weight + tag.weight,
       0
@@ -62,18 +71,11 @@ const Result = ({userSelectedTags}) => {
   const sortCoursesByPrerequisites = (courses) =>
     sortBy(courses, (course) => course.prerequisites.length).reverse()
 
-  const weightCoursesByTags = (tags: TagId[]) => {
-    // const sortedCoursesByWeight = sortCoursesByWeight(
-    //   COURSES.map((course, i) => ({
-    //     ...course,
-    //     matches: getMatchingCourseTagIds(course, tags),
-    //     weight: getWeight(course, tags)
-    //   }))
-    // )
+  const weightCoursesByTags = (tags: string[]) => {
     const sortedCoursesByPrereqs = sortCoursesByPrerequisites(
       COURSES.map((course, i) => ({
         ...course,
-        matches: getMatchingCourseTagIds(course, tags),
+        // matches: getMatchingCourseTagIds(course, tags),
         weight: getWeight(course, tags)
       }))
     )
@@ -106,16 +108,20 @@ const Result = ({userSelectedTags}) => {
     return prerequisiteCourses
   }
 
-  const getRecommendedCourses = (courses) => {
-    const largestWeight = courses[0].weight
-    const mainRecommendations = filterCoursesByWeight(courses, largestWeight)
+  const getRecommendedCourses = (tags: string[]) => {
+    const weightedCourses = weightCoursesByTags(tags)
+    const largestWeight = weightedCourses[0].weight
+    const mainRecommendations = filterCoursesByWeight(
+      weightedCourses,
+      largestWeight
+    )
     const prerequisites = differenceBy(
       getPrerequisites(mainRecommendations),
       mainRecommendations,
       'name'
     )
     const otherRecommendations = differenceBy(
-      courses,
+      weightedCourses,
       [...mainRecommendations, ...prerequisites],
       'name'
     ).slice(0, 3)
@@ -123,35 +129,20 @@ const Result = ({userSelectedTags}) => {
     return [mainRecommendations, otherRecommendations, prerequisites]
   }
 
-  const weightedCourses = weightCoursesByTags(userSelectedTags)
   const [
     mainRecommendations,
     otherRecommendations,
     prerequisites
-  ] = getRecommendedCourses(weightedCourses)
+  ] = getRecommendedCourses(userSelectedTags)
 
   return (
     <ResultBox>
       <H2>Top Picks for Arianna</H2>
 
       <Recommendations
-        title={'You should take these courses:'}
-        courses={mainRecommendations}
+        title={'Here is your recommended course path:'}
+        courses={prerequisites.concat(mainRecommendations)}
       />
-      {prerequisites.length > 0 && (
-        <>
-          <Recommendations
-            title={'But first, start with these courses:'}
-            courses={prerequisites}
-          />
-          <Recommendations
-            title={
-              'Putting these together, here is your customized course pathway:'
-            }
-            courses={prerequisites.concat(mainRecommendations)}
-          />
-        </>
-      )}
 
       <Recommendations
         title={'You might also be interested in these courses:'}

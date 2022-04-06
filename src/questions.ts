@@ -1,6 +1,6 @@
 import {TagId} from './tags'
 
-type Answer = {
+export type Answer = {
   text: string
   tags: TagId[]
   nextQuestionId?: string
@@ -120,8 +120,8 @@ export const QUESTIONS: Question[] = [
         tags: ['topic:UX']
       },
       {text: 'User interfaces', tags: ['topic:UI']},
-      {text: 'Branding', tags: ['topic:graphic-design']},
-      {text: 'Instagram filters', tags: ['topic:3D']}
+      {text: 'Graphic design & branding', tags: ['topic:graphic-design']},
+      {text: 'Instagram filters', tags: ['design-tool:sparkAR']}
     ],
     multiselect: false
   },
@@ -151,17 +151,17 @@ export const QUESTIONS: Question[] = [
     text: 'Which coding topic do you want to learn about?',
     answers: [
       {
-        text: 'A specific coding language',
+        text: 'A coding language',
         tags: [],
         nextQuestionId: 'q9'
       },
       {
-        text: 'A Javascript library or framework',
+        text: 'A Javascript library',
         tags: ['coding-language:JS'],
         nextQuestionId: 'q16'
       },
       {
-        text: 'A specific coding tool',
+        text: 'A coding tool',
         tags: [],
         nextQuestionId: 'q10'
       },
@@ -338,14 +338,14 @@ export const QUESTIONS: Question[] = [
       },
       {
         text: 'User researcher',
-        tags: ['topic:UX', 'topic:project-management']
+        tags: ['topic:UX']
       }
     ],
     multiselect: false
   },
   {
     id: 'q16',
-    text: 'Which Javascript framework or library do you want to learn about?',
+    text: 'Which Javascript library do you want to learn about?',
     answers: [
       {
         text: 'React.js',
@@ -360,10 +360,6 @@ export const QUESTIONS: Question[] = [
         tags: ['coding-tool:three.js']
       },
       {
-        text: 'Barba.js',
-        tags: ['coding-tool:barba.js']
-      },
-      {
         text: 'web3.js',
         tags: ['coding-tool:web3.js']
       },
@@ -371,6 +367,10 @@ export const QUESTIONS: Question[] = [
       {
         text: 'p5.js',
         tags: ['coding-tool:p5.js']
+      },
+      {
+        text: 'Barba.js',
+        tags: ['coding-tool:barba.js']
       }
     ],
     multiselect: false

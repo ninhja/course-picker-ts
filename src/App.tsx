@@ -3,46 +3,58 @@ import {GlobalStyle, Header, NavButton, H1, Main, QuizBox} from './styles'
 import Quiz from './components/Quiz'
 import Result from './components/Result'
 import WelcomePage from './components/WelcomePage'
-import {QUESTIONS} from './questions'
+import {Answer, QUESTIONS} from './questions'
 
 const STARTING_QUESTION_ID = 'q1'
 
-const formatDataObject = () =>
-  QUESTIONS.reduce(
-    (data, currentQuestion) => {
-      const {id, answers, ...restOfCurrentQuestion} = currentQuestion
-      const answerDataObject = answers
-        .map((answer, index) => ({
-          id: id + '-a' + (index + 1),
-          ...answer,
-          selected: false
-        }))
-        .reduce(
-          (answerData, currentAnswer) => ({
-            ...answerData,
-            [currentAnswer.id]: currentAnswer
-          }),
-          {}
-        )
-      const answerIds = Object.keys(answerDataObject)
+type QuestionData = {
+  id: string
+  text: string
+  multiselect: boolean
+  answerIds: string[]
+}
+type QuestionsData = Record<string, QuestionData>
+type AnswerData = Answer & {id: string; selected: false}
+type AnswersData = Record<string, AnswerData>
 
-      return {
-        questionsData: {
-          ...data.questionsData,
-          [id]: {
-            id: id,
-            ...restOfCurrentQuestion,
-            answerIds: answerIds
-          }
-        },
-        answersData: {
-          ...data.answersData,
-          ...answerDataObject
+// this reformats the questions into two different objects,
+// questionsData and answersData, in a way that is easier to work with
+const formatDataObject = (): {
+  questionsData: QuestionsData
+  answersData: AnswersData
+} =>
+  QUESTIONS.reduce((data, currentQuestion) => {
+    const {id, answers, ...restOfCurrentQuestion} = currentQuestion
+    const answerDataObject = answers
+      .map((answer, index) => ({
+        id: id + '-a' + (index + 1),
+        ...answer,
+        selected: false
+      }))
+      .reduce(
+        (answerData, currentAnswer) => ({
+          ...answerData,
+          [currentAnswer.id]: currentAnswer
+        }),
+        {}
+      )
+    const answerIds = Object.keys(answerDataObject)
+
+    return {
+      questionsData: {
+        ...data.questionsData,
+        [id]: {
+          id: id,
+          ...restOfCurrentQuestion,
+          answerIds: answerIds
         }
+      },
+      answersData: {
+        ...data.answersData,
+        ...answerDataObject
       }
-    },
-    {questionsData: {}, answersData: {}}
-  )
+    }
+  }, {} as {questionsData; answersData})
 
 const {questionsData, answersData} = formatDataObject()
 
@@ -134,7 +146,7 @@ export default function App() {
       selectAnswer(answer)
     }
   }
-  const handleOptionClick = (answer) => {
+  const handleAnswerClick = (answer) => {
     updateAnswerSelected(answer)
     if (!questionsData[currentQuestionId].multiselect) {
       if (answer.nextQuestionId) {
@@ -154,10 +166,13 @@ export default function App() {
       []
     )
   console.log(' ')
-  console.log('currentQuestionId: ' + currentQuestionId)
-  console.log('questionIds: ' + questionIds)
-  console.log('answerIds: ' + answerIds)
-  console.log('userSelectedTags: ' + getUserSelectedTags())
+  // console.log('currentQuestionId: ' + currentQuestionId)
+  // console.log('questionIds: ' + questionIds)
+  // console.log('answerIds: ' + answerIds)
+  // console.log('userSelectedTags: ' + getUserSelectedTags())
+
+  // console.log(questionsData)
+  // console.log(answersData)
 
   return (
     <>
@@ -179,7 +194,7 @@ export default function App() {
                 (answerId) => answersData[answerId]
               )}
               answerIds={answerIds}
-              handleOptionClick={handleOptionClick}
+              handleAnswerClick={handleAnswerClick}
               goToNextQuestion={goToNextQuestion}
             />
           ) : (

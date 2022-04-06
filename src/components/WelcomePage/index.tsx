@@ -1,7 +1,6 @@
 import React from 'react'
-import {StartButton} from './styles'
 
-import {H2, P, A} from '../../styles'
+import {H2, P, A, CTAButton} from '../../styles'
 
 const WelcomePage = ({startQuiz}) => (
   <>
@@ -11,7 +10,7 @@ const WelcomePage = ({startQuiz}) => (
       upgrade your skills and boost your career. This quiz will help you figure
       out what courses you should take to achieve your goals. Let's go!
     </P>
-    <StartButton onClick={startQuiz}>Take the quiz</StartButton>
+    <CTAButton onClick={startQuiz}>Take the quiz</CTAButton>
     <A href="https://www.superhi.com/courses">Browse all courses</A>
   </>
 )

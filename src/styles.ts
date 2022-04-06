@@ -67,6 +67,17 @@ export const PillButton = styled(Button)`
   transition: 0.2s ease;
 `
 
+export const CTAButton = styled(PillButton)`
+  color: ${COLORS.white};
+  background: ${COLORS.darkBlue};
+  border: none;
+  margin-bottom: 16px;
+
+  :hover {
+    background: ${COLORS.extraDarkBlue};
+  }
+`
+
 export const Header = styled.header`
   background: white;
   border-bottom: 1px solid grey;
